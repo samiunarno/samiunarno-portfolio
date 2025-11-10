@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import logo from '@/assets/logo.png'; // ✅ Import your logo here (adjust the path as needed)
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +15,7 @@ const Navbar = () => {
     { name: 'Contact', href: '#contact' },
   ];
 
-  const handleScroll = (href ) => {
+  const handleScroll = (href) => {
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -26,7 +27,7 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
       className="fixed top-0 left-0 right-0 z-40 bg-gray-900/80 backdrop-blur-md border-b border-gray-800"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
@@ -39,7 +40,7 @@ const Navbar = () => {
             onClick={() => handleScroll('#hero')}
           >
             <motion.img
-              src="/assets/logo.png"  // 👈 use your transparent white PNG here
+              src={logo} // ✅ Use imported logo
               alt="Logo"
               className="h-16 w-auto object-contain brightness-200"
               initial={{ opacity: 0, scale: 0.95 }}
@@ -76,7 +77,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu Dropdown */}
+        {/* ✅ Mobile Dropdown */}
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
