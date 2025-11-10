@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Github, Linkedin, Twitter, Mail, ArrowUp, Heart } from 'lucide-react';
+import Logo from './assets/logo.png';  // Import your logo
 
 const Footer = () => {
   const [ref, inView] = useInView({
@@ -16,7 +17,7 @@ const Footer = () => {
     { icon: Github, href: '#', label: 'GitHub' },
     { icon: Linkedin, href: '#', label: 'LinkedIn' },
     { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Mail, href: 'mailto:adrian@example.com', label: 'Email' },
+    { icon: Mail, href: 'mailto:samiunarnouk@gmail.com', label: 'Email' },
   ];
 
   const quickLinks = [
@@ -50,13 +51,14 @@ const Footer = () => {
               transition={{ duration: 0.8 }}
               className="lg:col-span-2"
             >
-              <motion.h3
-                whileHover={{ scale: 1.05 }}
-                className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent mb-4 cursor-pointer"
-                onClick={scrollToTop}
-              >
-                Adrian's Portfolio
-              </motion.h3>
+              {/* Replace the text with the logo image */}
+              <motion.img
+                src={Logo}  // Logo source
+                alt="Logo"
+                className="w-32 md:w-48 mb-4 cursor-pointer"  // Adjust size as needed
+                whileHover={{ scale: 1.05 }}  // Add hover effect
+                onClick={scrollToTop}  // Scroll to top when clicked
+              />
               <p className="text-gray-400 mb-6 max-w-md leading-relaxed">
                 Creating exceptional digital experiences through innovative web development, 
                 3D graphics, and thoughtful design. Let's build something amazing together.
@@ -83,7 +85,7 @@ const Footer = () => {
             </motion.div>
 
             {/* Quick Links */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -105,10 +107,10 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </motion.div> */}
 
             {/* Services */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
@@ -130,7 +132,7 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </motion.div> */}
           </div>
         </div>
 
@@ -142,7 +144,7 @@ const Footer = () => {
           className="py-6 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4"
         >
           <p className="text-gray-400 text-center md:text-left flex items-center gap-2">
-            © 2024 Adrian's Portfolio. Made with 
+            © 2025 Samiun Mahmud . Made with 
             <Heart size={16} className="text-red-500 fill-current" />
             and lots of coffee.
           </p>

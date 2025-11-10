@@ -38,6 +38,7 @@ const About = () => {
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-600/20 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10" ref={ref}>
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -69,6 +70,19 @@ const About = () => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
+            {/* Profile Image */}
+            <div className="flex justify-center mb-10">
+              <motion.img
+                src="/src/components/assets/pro.jpeg"
+                alt="Profile"
+                className="w-48 h-48 md:w-56 md:h-56 object-cover rounded-full border-4 border-purple-500/30 shadow-lg shadow-purple-600/30 hover:scale-105 transition-transform duration-500"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={inView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              />
+            </div>
+
+            {/* Bio Text */}
             <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
               <p>
                 I'm a passionate <span className="text-purple-400 font-semibold">Full Stack Developer</span> with 
@@ -122,7 +136,7 @@ const About = () => {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
                 whileHover={{ scale: 1.02, x: 10 }}
-                className="group p-6 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 hover-target"
+                className="group p-6 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300"
               >
                 <div className="flex items-start gap-4">
                   <div className="p-3 rounded-xl bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 group-hover:border-purple-400/50 transition-colors duration-300">

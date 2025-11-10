@@ -58,7 +58,7 @@ function App() {
         <Services />
         <Experience />
         <Testimonials />
-        <Blog />
+        {/* <Blog /> */}
         <Awards />
         <Gallery />
         <InteractiveFun />

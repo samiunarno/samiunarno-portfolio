@@ -127,14 +127,7 @@ const Testimonials = () => {
               bulletClass: 'swiper-pagination-bullet custom-bullet',
               bulletActiveClass: 'swiper-pagination-bullet-active custom-bullet-active',
             }}
-            breakpoints={{
-              640: {
-                slidesPerView: 1,
-              },
-              1024: {
-                slidesPerView: 2,
-              },
-            }}
+            centeredSlides={true}
             className="testimonials-swiper"
           >
             {testimonials.map((testimonial, index) => (
@@ -143,42 +136,40 @@ const Testimonials = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="h-full"
+                  className="p-8 bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-3xl hover:border-purple-500/50 transition-all duration-500 hover-target h-full flex flex-col"
                 >
-                  <div className="p-8 bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-3xl hover:border-purple-500/50 transition-all duration-500 hover-target h-full flex flex-col">
-                    {/* Quote Icon */}
-                    <div className="mb-6">
-                      <Quote size={32} className="text-purple-400" />
-                    </div>
+                  {/* Quote Icon */}
+                  <div className="mb-6">
+                    <Quote size={32} className="text-purple-400" />
+                  </div>
 
-                    {/* Rating */}
-                    <div className="mb-6">
-                      <StarRating rating={testimonial.rating} />
-                    </div>
+                  {/* Rating */}
+                  <div className="mb-6">
+                    <StarRating rating={testimonial.rating} />
+                  </div>
 
-                    {/* Content */}
-                    <blockquote className="text-gray-300 text-lg leading-relaxed mb-8 flex-grow">
-                      "{testimonial.content}"
-                    </blockquote>
+                  {/* Content */}
+                  <blockquote className="text-gray-300 text-lg leading-relaxed mb-8 flex-grow">
+                    "{testimonial.content}"
+                  </blockquote>
 
-                    {/* Author */}
-                    <div className="flex items-center gap-4">
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="w-12 h-12 rounded-full object-cover border-2 border-purple-500/30"
-                      />
-                      <div>
-                        <h4 className="text-white font-semibold">
-                          {testimonial.name}
-                        </h4>
-                        <p className="text-gray-400 text-sm">
-                          {testimonial.role}
-                        </p>
-                        <p className="text-purple-400 text-sm">
-                          {testimonial.company}
-                        </p>
-                      </div>
+                  {/* Author */}
+                  <div className="flex items-center gap-4">
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="w-12 h-12 rounded-full object-cover border-2 border-purple-500/30"
+                    />
+                    <div>
+                      <h4 className="text-white font-semibold">
+                        {testimonial.name}
+                      </h4>
+                      <p className="text-gray-400 text-sm">
+                        {testimonial.role}
+                      </p>
+                      <p className="text-purple-400 text-sm">
+                        {testimonial.company}
+                      </p>
                     </div>
                   </div>
                 </motion.div>
@@ -194,43 +185,21 @@ const Testimonials = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-20"
         >
-          <p className="text-center text-gray-400 mb-8">
-            Trusted by companies worldwide
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
-            {['Cloudinary', 'Appwrite', 'HOSTINGER', 'stream', 'docker'].map((logo, index) => (
-              <motion.div
-                key={logo}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={inView ? { opacity: 0.6, scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 * index }}
-                whileHover={{ opacity: 1, scale: 1.1 }}
-                className="text-2xl font-bold text-gray-500 hover:text-purple-400 transition-all duration-300 cursor-pointer"
-              >
-                {logo}
-              </motion.div>
-            ))}
-          </div>
+          
         </motion.div>
       </div>
 
       {/* Custom Swiper Styles */}
-      <style jsx global>{`
-        .testimonials-swiper {
-          padding-bottom: 50px;
+      <style jsx>{`
+        .testimonials-swiper .swiper-pagination-bullet {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.5);
         }
-        
-        .custom-bullet {
-          width: 12px !important;
-          height: 12px !important;
-          background: rgba(168, 85, 247, 0.3) !important;
-          border-radius: 50% !important;
-          transition: all 0.3s ease !important;
-        }
-        
-        .custom-bullet-active {
-          background: linear-gradient(135deg, #a855f7, #ec4899) !important;
-          transform: scale(1.2) !important;
+
+        .testimonials-swiper .swiper-pagination-bullet-active {
+          background: rgba(255, 255, 255, 1);
         }
       `}</style>
     </section>

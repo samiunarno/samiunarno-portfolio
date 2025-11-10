@@ -46,8 +46,8 @@ const Contact = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'adrian@example.com',
-      href: 'mailto:adrian@example.com',
+      value: 'samiunarnouk@gmail.com',
+      href: 'mailto:samiunarnouk@gmail.com',
     },
     {
       icon: Phone,
@@ -55,12 +55,12 @@ const Contact = () => {
       value: '+385 99 123 4567',
       href: 'tel:+385991234567',
     },
-    {
-      icon: MapPin,
-      label: 'Location',
-      value: 'Zagreb, Croatia',
-      href: '#',
-    },
+    // {
+    //   icon: MapPin,
+    //   label: 'Location',
+    //   value: 'Zagreb, ',
+    //   href: '#',
+    // },
   ];
 
   return (
@@ -148,7 +148,7 @@ const Contact = () => {
             </div>
 
             {/* Availability Status */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -161,7 +161,7 @@ const Contact = () => {
               <p className="text-gray-300 text-sm">
                 I'm currently accepting new freelance projects and collaborations for 2024.
               </p>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
 
           {/* Contact Form */}

@@ -1,259 +1,97 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { useState } from 'react';
-import { X, ExternalLink, Maximize2 } from 'lucide-react';
+import { motion } from "framer-motion";
 
-const Gallery = () => {
-  const [ref, inView] = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-  });
-
-  const [selectedImage, setSelectedImage] = useState<number | null>(null);
-  const [activeFilter, setActiveFilter] = useState('All');
-
-  const galleryItems = [
-    {
-      id: 1,
-      title: 'E-commerce Dashboard Design',
-      category: 'UI Design',
-      image: 'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=800',
-      description: 'Modern dashboard interface for e-commerce analytics',
-    },
-    {
-      id: 2,
-      title: 'Mobile Banking App',
-      category: 'Mobile UI',
-      image: 'https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=800',
-      description: 'Clean and intuitive mobile banking application design',
-    },
-    {
-      id: 3,
-      title: 'Portfolio Website Mockup',
-      category: 'Web Design',
-      image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800',
-      description: 'Creative portfolio website with modern aesthetics',
-    },
-    {
-      id: 4,
-      title: 'Brand Identity Design',
-      category: 'Branding',
-      image: 'https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=800',
-      description: 'Complete brand identity package for tech startup',
-    },
-    {
-      id: 5,
-      title: 'Social Media App Interface',
-      category: 'Mobile UI',
-      image: 'https://images.pexels.com/photos/267394/pexels-photo-267394.jpeg?auto=compress&cs=tinysrgb&w=800',
-      description: 'Modern social media application user interface',
-    },
-    {
-      id: 6,
-      title: 'Landing Page Design',
-      category: 'Web Design',
-      image: 'https://images.pexels.com/photos/196655/pexels-photo-196655.jpeg?auto=compress&cs=tinysrgb&w=800',
-      description: 'High-converting landing page for SaaS product',
-    },
-    {
-      id: 7,
-      title: 'Logo Collection',
-      category: 'Branding',
-      image: 'https://images.pexels.com/photos/267401/pexels-photo-267401.jpeg?auto=compress&cs=tinysrgb&w=800',
-      description: 'Collection of minimalist logo designs',
-    },
-    {
-      id: 8,
-      title: 'Admin Panel Interface',
-      category: 'UI Design',
-      image: 'https://images.pexels.com/photos/265086/pexels-photo-265086.jpeg?auto=compress&cs=tinysrgb&w=800',
-      description: 'Comprehensive admin panel with data visualization',
-    },
+const GalleryCarousel = () => {
+  const row1 = [
+    "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3184454/pexels-photo-3184454.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3183171/pexels-photo-3183171.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3184300/pexels-photo-3184300.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3184455/pexels-photo-3184455.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3183172/pexels-photo-3183172.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3184463/pexels-photo-3184463.jpeg?auto=compress&cs=tinysrgb&w=1600",
   ];
 
-  const categories = ['All', 'UI Design', 'Web Design', 'Mobile UI', 'Branding'];
+  const row2 = [
+    "https://images.pexels.com/photos/3184468/pexels-photo-3184468.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3773838/pexels-photo-3773838.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3182744/pexels-photo-3182744.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3184467/pexels-photo-3184467.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3184460/pexels-photo-3184460.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  ];
 
-  const filteredItems = activeFilter === 'All' 
-    ? galleryItems 
-    : galleryItems.filter(item => item.category === activeFilter);
+  const row3 = [
+    "https://images.pexels.com/photos/1181355/pexels-photo-1181355.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/196655/pexels-photo-196655.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3184313/pexels-photo-3184313.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3182776/pexels-photo-3182776.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3183175/pexels-photo-3183175.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3183185/pexels-photo-3183185.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3182750/pexels-photo-3182750.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3183188/pexels-photo-3183188.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/3184323/pexels-photo-3184323.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  ];
+
+  const duplicate = (arr) => [...arr, ...arr];
 
   return (
-    <section id="gallery" className="py-20 bg-gray-800 relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-600/10 rounded-full blur-3xl" />
+    <section className="relative py-28 bg-gray-950 overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-950 to-black" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-purple-400 text-lg font-medium mb-4"
-          >
-            CREATIVE SHOWCASE
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-4xl md:text-5xl font-bold text-white mb-8"
-          >
-            Design <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">Gallery</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-gray-400 text-lg max-w-3xl mx-auto"
-          >
-            A curated collection of my design work, showcasing creativity and attention to detail across various mediums.
-          </motion.p>
-        </motion.div>
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-5xl md:text-6xl font-bold text-white">
+            Infinite{" "}
+            <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+              Professional Carousel
+            </span>
+          </h2>
+          <p className="text-gray-400 mt-4 text-lg">
+            All rows scroll in sync from right → left for a clean, modern visual flow.
+          </p>
+        </div>
 
-        {/* Filter Tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex justify-center mb-12"
-        >
-          <div className="flex bg-gray-900/50 backdrop-blur-sm rounded-full p-2 border border-gray-700/50">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveFilter(category)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 hover-target ${
-                  activeFilter === category
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
-                    : 'text-gray-400 hover:text-purple-400'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Gallery Grid */}
-        <motion.div 
-          className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-          layout
-        >
-          {filteredItems.map((item, index) => (
+        <div className="flex flex-col gap-12">
+          {[row1, row2, row3].map((row, idx) => (
             <motion.div
-              key={item.id}
-              layout
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="group relative overflow-hidden rounded-2xl bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 hover-target"
+              key={idx}
+              className="flex gap-8"
+              animate={{ x: ["-50%", "0%"] }}
+              transition={{
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 95 + idx * 5, // subtle variation for depth
+                ease: "linear",
+              }}
             >
-              {/* Image */}
-              <div className="relative overflow-hidden aspect-square">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
-                {/* Action Buttons */}
-                <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => setSelectedImage(item.id)}
-                    className="p-2 bg-gray-900/80 backdrop-blur-sm rounded-full text-purple-400 hover:text-purple-300 transition-colors duration-300"
-                  >
-                    <Maximize2 size={18} />
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="p-2 bg-gray-900/80 backdrop-blur-sm rounded-full text-purple-400 hover:text-purple-300 transition-colors duration-300"
-                  >
-                    <ExternalLink size={18} />
-                  </motion.button>
+              {duplicate(row).map((src, i) => (
+                <div
+                  key={`${idx}-${i}`}
+                  className="flex-shrink-0 w-[320px] h-[190px] overflow-hidden rounded-2xl border border-gray-800/50 bg-gray-900/40 hover:border-purple-500/40 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-500"
+                >
+                  <img
+                    src={src}
+                    alt=""
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                  />
                 </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-4">
-                <span className="px-2 py-1 bg-purple-600/20 border border-purple-500/30 rounded-full text-purple-400 text-xs font-medium">
-                  {item.category}
-                </span>
-                <h3 className="text-white font-semibold mt-2 mb-1 group-hover:text-purple-400 transition-colors duration-300">
-                  {item.title}
-                </h3>
-                <p className="text-gray-400 text-sm">
-                  {item.description}
-                </p>
-              </div>
+              ))}
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Lightbox Modal */}
-        {selectedImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
-            onClick={() => setSelectedImage(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              className="relative max-w-4xl max-h-[90vh] bg-gray-900 rounded-2xl overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 z-10 p-2 bg-gray-800/80 backdrop-blur-sm rounded-full text-white hover:text-purple-400 transition-colors duration-300"
-              >
-                <X size={24} />
-              </button>
-              
-              {(() => {
-                const item = galleryItems.find(item => item.id === selectedImage);
-                return item ? (
-                  <>
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-auto max-h-[70vh] object-contain"
-                    />
-                    <div className="p-6">
-                      <span className="px-3 py-1 bg-purple-600/20 border border-purple-500/30 rounded-full text-purple-400 text-sm font-medium">
-                        {item.category}
-                      </span>
-                      <h3 className="text-2xl font-bold text-white mt-3 mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-400">
-                        {item.description}
-                      </p>
-                    </div>
-                  </>
-                ) : null;
-              })()}
-            </motion.div>
-          </motion.div>
-        )}
+        </div>
       </div>
+
+      {/* Edge fade overlays */}
+      <div className="pointer-events-none absolute top-0 left-0 w-40 h-full bg-gradient-to-r from-gray-950 to-transparent" />
+      <div className="pointer-events-none absolute top-0 right-0 w-40 h-full bg-gradient-to-l from-gray-950 to-transparent" />
     </section>
   );
 };
 
-export default Gallery;
+export default GalleryCarousel;
