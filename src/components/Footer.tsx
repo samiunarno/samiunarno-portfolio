@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Github, Linkedin, Twitter, Mail, ArrowUp, Heart } from 'lucide-react';
-import Logo from './assets/logo.png';  // Import your logo
+import Logo from '/assets/logo.png';  // Import your logo
 
 const Footer = () => {
   const [ref, inView] = useInView({

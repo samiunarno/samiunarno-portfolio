@@ -39,7 +39,7 @@ const Navbar = () => {
             onClick={() => handleScroll('#hero')}
           >
             <motion.img
-              src="/src/components/assets/logo.png"  // 👈 use your transparent white PNG here
+              src="/assets/logo.png"  // 👈 use your transparent white PNG here
               alt="Logo"
               className="h-16 w-auto object-contain brightness-200"
               initial={{ opacity: 0, scale: 0.95 }}

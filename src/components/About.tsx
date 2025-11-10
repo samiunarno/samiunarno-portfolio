@@ -73,7 +73,7 @@ const About = () => {
             {/* Profile Image */}
             <div className="flex justify-center mb-10">
               <motion.img
-                src="/src/components/assets/pro.jpeg"
+                src="/assets/pro.jpeg"
                 alt="Profile"
                 className="w-48 h-48 md:w-56 md:h-56 object-cover rounded-full border-4 border-purple-500/30 shadow-lg shadow-purple-600/30 hover:scale-105 transition-transform duration-500"
                 initial={{ opacity: 0, scale: 0.9 }}
