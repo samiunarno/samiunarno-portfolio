@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Code, Palette, Zap, Heart } from 'lucide-react';
+import profileImg from '/assets/pro.jpeg'; // ✅ Import your image here (adjust path if needed)
 
 const About = () => {
   const [ref, inView] = useInView({
@@ -73,7 +74,7 @@ const About = () => {
             {/* Profile Image */}
             <div className="flex justify-center mb-10">
               <motion.img
-                src="/assets/pro.jpeg"
+                src={profileImg} // ✅ Use imported image here
                 alt="Profile"
                 className="w-48 h-48 md:w-56 md:h-56 object-cover rounded-full border-4 border-purple-500/30 shadow-lg shadow-purple-600/30 hover:scale-105 transition-transform duration-500"
                 initial={{ opacity: 0, scale: 0.9 }}
