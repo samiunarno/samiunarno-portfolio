@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import { motion } from 'framer-motion';
 import { Canvas } from '@react-three/fiber';
 import { Stars, Float } from '@react-three/drei';
@@ -104,7 +105,7 @@ const Hero = () => {
             className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto mb-12 leading-relaxed"
           >
             <TypewriterText 
-              text="Hi! I'm Adrian, a Next.js Developer based in Croatia. I prioritize client collaboration, fostering open communication"
+              text="Hi! I'm Samiun Mahmud, a Full Stack Developer. I prioritize client collaboration, fostering open communication"
               delay={1500}
             />
           </motion.p>
