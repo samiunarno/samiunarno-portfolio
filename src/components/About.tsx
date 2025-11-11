@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code, Palette, Zap, Heart } from 'lucide-react';
-import profileImg from '/assets/pro.jpeg'; // ✅ Import your image here (adjust path if needed)
+import { Code, Cpu, Bot, Sparkles } from 'lucide-react';
+import profileImg from '/assets/pro.jpeg'; // ✅ Ensure path is correct
 
 const About = () => {
   const [ref, inView] = useInView({
@@ -12,24 +12,28 @@ const About = () => {
   const features = [
     {
       icon: Code,
-      title: "Clean Code",
-      description: "Writing maintainable, scalable code that stands the test of time."
+      title: "Full Stack Development",
+      description:
+        "Learning and building complete applications from frontend to backend with a focus on clean, efficient, and scalable architecture.",
     },
     {
-      icon: Palette,
-      title: "Creative Design",
-      description: "Blending aesthetics with functionality for memorable user experiences."
+      icon: Cpu,
+      title: "AI & Deep Learning",
+      description:
+        "Exploring artificial intelligence, deep learning, and computer vision to develop smart, data-driven solutions.",
     },
     {
-      icon: Zap,
-      title: "Fast Performance",
-      description: "Optimized solutions that load quickly and run smoothly."
+      icon: Bot,
+      title: "Robotics & Automation",
+      description:
+        "Applying AI and control systems to design intelligent robots capable of performing real-world tasks autonomously.",
     },
     {
-      icon: Heart,
-      title: "User Focus",
-      description: "Putting user needs at the center of every design decision."
-    }
+      icon: Sparkles,
+      title: "Innovation & Research",
+      description:
+        "Driven by curiosity to experiment, learn, and turn creative ideas into meaningful technological projects.",
+    },
   ];
 
   return (
@@ -60,7 +64,10 @@ const About = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-4xl md:text-5xl font-bold text-white mb-8"
           >
-            About <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">Me</span>
+            About{" "}
+            <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+              Me
+            </span>
           </motion.h2>
         </motion.div>
 
@@ -74,7 +81,7 @@ const About = () => {
             {/* Profile Image */}
             <div className="flex justify-center mb-10">
               <motion.img
-                src={profileImg} // ✅ Use imported image here
+                src={profileImg}
                 alt="Profile"
                 className="w-48 h-48 md:w-56 md:h-56 object-cover rounded-full border-4 border-purple-500/30 shadow-lg shadow-purple-600/30 hover:scale-105 transition-transform duration-500"
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -84,20 +91,24 @@ const About = () => {
             </div>
 
             {/* Bio Text */}
-            <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
+            <div className="space-y-6 text-white text-lg leading-relaxed">
               <p>
-                I'm a passionate <span className="text-purple-400 font-semibold">Full Stack Developer</span> with 
-                over 5 years of experience crafting digital experiences that matter. I specialize in creating 
-                modern web applications using cutting-edge technologies like React, Node.js, and Three.js.
+                I'm{" "}
+                <span className="text-purple-400 font-semibold">
+                  Samiun Mahmud
+                </span>
+                , a Computer Science & Technology student and passionate Full
+                Stack Developer dedicated to solving real-world problems through
+                creativity and technology. My journey combines a solid
+                foundation in programming with hands-on experience across both
+                frontend and backend development.
               </p>
               <p>
-                My journey in web development started with a curiosity about how things work on the internet, 
-                and it has evolved into a deep passion for creating seamless, beautiful, and functional 
-                user experiences.
-              </p>
-              <p>
-                When I'm not coding, you'll find me exploring new technologies, contributing to open-source 
-                projects, or sharing knowledge with the developer community.
+                Beyond software, I’m deeply involved in Robotics and Artificial
+                Intelligence, focusing on deep learning, computer vision, and
+                intelligent system design. From developing autonomous rovers to
+                AI-powered image processing and security tools, I aim to build
+                technology that learns, adapts, and creates real impact.
               </p>
             </div>
 
@@ -109,9 +120,9 @@ const About = () => {
               className="grid grid-cols-3 gap-8 mt-12"
             >
               {[
-                { number: "50+", label: "Projects Completed" },
-                { number: "5+", label: "Years Experience" },
-                { number: "100%", label: "Client Satisfaction" }
+                { number: "30+", label: "Projects Completed" },
+                { number: "20+", label: "Hackathons & Competitions" },
+                { number: "3+ Years", label: "Experience in Development" },
               ].map((stat, index) => (
                 <div key={index} className="text-center">
                   <div className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
@@ -147,7 +158,7 @@ const About = () => {
                     <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-purple-400 transition-colors duration-300">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                    <p className="text-white group-hover:text-gray-200 transition-colors duration-300">
                       {feature.description}
                     </p>
                   </div>
