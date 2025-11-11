@@ -1,119 +1,109 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { useState } from 'react';
-import { ExternalLink, Github, Filter } from 'lucide-react';
-import Tilt from 'react-parallax-tilt';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useState } from "react";
+import Tilt from "react-parallax-tilt";
+import { ChevronDown, ExternalLink, Mail } from "lucide-react";
 
-// ✅ Tech icons (official logos)
+/* ✅ Reliable Tech Icon Sources */
 const techIcons = {
-  'React': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
-  'Next.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
-  'Three.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg',
-  'Node.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
-  'WebGL': 'https://upload.wikimedia.org/wikipedia/commons/2/25/WebGL_Logo.svg',
-  'GLSL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opengl/opengl-original.svg',
-  'OpenAI': 'https://upload.wikimedia.org/wikipedia/commons/4/4b/OpenAI_Logo.svg',
-  'MongoDB': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
-  'Express': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
-  'Socket.io': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/socketio/socketio-original.svg',
-  'Stripe': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/stripe/stripe-original.svg',
-  'PostgreSQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
-  'Prisma': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg',
-  'WebRTC': 'https://upload.wikimedia.org/wikipedia/commons/d/db/WebRTC_Logo.svg',
-  'GSAP': 'https://cdn.worldvectorlogo.com/logos/gsap-greensock.svg',
-  'Tailwind': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
-  'Blender': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/blender/blender-original.svg',
+  Python: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  Cplusplus: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+  JavaScript: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  TypeScript: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+  React: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  Next: "https://skillicons.dev/icons?i=nextjs",
+  Node: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  Express: "https://skillicons.dev/icons?i=express",
+  MongoDB: "https://skillicons.dev/icons?i=mongodb",
+  PostgreSQL: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+  TensorFlow: "https://skillicons.dev/icons?i=tensorflow",
+  Keras: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/keras/keras-original.svg",
+  
+  OpenCV: "https://skillicons.dev/icons?i=opencv",
+  ROS: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ros/ros-original.svg",
+  Docker: "https://skillicons.dev/icons?i=docker",
+  Git: "https://skillicons.dev/icons?i=git",
+  GitHub: "https://skillicons.dev/icons?i=github",
+  ThreeJS: "https://skillicons.dev/icons?i=threejs",
+  Blender: "https://skillicons.dev/icons?i=blender",
+  API: "https://skillicons.dev/icons?i=postman",
+  Linux: "https://skillicons.dev/icons?i=linux",
+  Oracle: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg",
 };
 
+/* 🧠 Projects Data */
+const projects = [
+  {
+    id: 1,
+    title: "Prohori 247 – AI-Powered Security Tool",
+    category: "AI & Robotics",
+    description:
+      "An intelligent security system capable of real-time surveillance, object detection, and automated alerts using deep learning and IoT integration.",
+    tech: ["Python", "TensorFlow", "Node", "React"],
+    image:
+      "https://images.pexels.com/photos/10543891/pexels-photo-10543891.jpeg?auto=compress&cs=tinysrgb&w=800",
+    live: "#",
+  },
+  {
+    id: 2,
+    title: "AI Agent Chatbot",
+    category: "AI / NLP",
+    description:
+      "Conversational AI assistant that uses OpenAI GPT API for human-like responses and intelligent workflow automation.",
+    tech: ["Python", "OpenAI", "Node", "React"],
+    image:
+      "https://images.pexels.com/photos/1181271/pexels-photo-1181271.jpeg?auto=compress&cs=tinysrgb&w=800",
+    live: "#",
+  },
+  {
+    id: 3,
+    title: "Fresh & Damage Product Detection",
+    category: "Computer Vision",
+    description:
+      "Trained deep learning model to classify fruits as fresh or damaged using convolutional neural networks and image processing.",
+    tech: ["Python", "TensorFlow", "OpenCV"],
+    image:
+      "https://images.pexels.com/photos/1114429/pexels-photo-1114429.jpeg?auto=compress&cs=tinysrgb&w=800",
+    live: "#",
+  },
+  {
+    id: 4,
+    title: "Smart Fitness Solution (Garmin API)",
+    category: "Health Tech",
+    description:
+      "Personalized AI fitness assistant integrating Garmin health API, providing real-time analytics and custom workout recommendations.",
+    tech: ["React", "Node", "MongoDB", "API"],
+    image:
+      "https://images.pexels.com/photos/3768913/pexels-photo-3768913.jpeg?auto=compress&cs=tinysrgb&w=800",
+    live: "#",
+  },
+  {
+    id: 5,
+    title: "ArUco Marker Detection & Pose Estimation",
+    category: "Robotics / Vision",
+    description:
+      "Implemented OpenCV-based ArUco detection for robotics localization, 3D pose estimation, and computer vision-based navigation.",
+    tech: ["Python", "OpenCV", "ROS"],
+    image:
+      "https://images.pexels.com/photos/8437005/pexels-photo-8437005.jpeg?auto=compress&cs=tinysrgb&w=800",
+    live: "#",
+  },
+  {
+    id: 6,
+    title: "Real-Time Chat Application",
+    category: "Web App",
+    description:
+      "Full-stack chat app supporting real-time messaging, online status, and private rooms using Socket.io and Next.js.",
+    tech: ["Next", "Node", "MongoDB"],
+    image:
+      "https://images.pexels.com/photos/276467/pexels-photo-276467.jpeg?auto=compress&cs=tinysrgb&w=800",
+    live: "#",
+  },
+];
+
 const Projects = () => {
-  const [ref, inView] = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
-  });
-
-  const [activeFilter, setActiveFilter] = useState('All');
-
-  const projects = [
-    {
-      id: 1,
-      title: 'Earth - 3D Solar System',
-      description:
-        'Interactive 3D solar system with realistic planet movements and atmospheric effects.',
-      image:
-        'https://images.pexels.com/photos/87651/earth-blue-planet-globe-planet-87651.jpeg?auto=compress&cs=tinysrgb&w=800',
-      category: '3D',
-      tech: ['Three.js', 'React', 'WebGL', 'GLSL'],
-      liveUrl: '#',
-      githubUrl: '#',
-    },
-    {
-      id: 2,
-      title: 'Yoom - Video Conference App',
-      description:
-        'Modern video conferencing platform with screen sharing, chat, and recording features.',
-      image:
-        'https://images.pexels.com/photos/4491461/pexels-photo-4491461.jpeg?auto=compress&cs=tinysrgb&w=800',
-      category: 'Web App',
-      tech: ['Next.js', 'WebRTC', 'Socket.io', 'Tailwind'],
-      liveUrl: '#',
-      githubUrl: '#',
-    },
-    {
-      id: 3,
-      title: 'AI Image SaaS - Canva Application',
-      description:
-        'AI-powered image editing platform with advanced filters and generation capabilities.',
-      image:
-        'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800',
-      category: 'Web App',
-      tech: ['React', 'Node.js', 'OpenAI', 'MongoDB'],
-      liveUrl: '#',
-      githubUrl: '#',
-    },
-    {
-      id: 4,
-      title: 'Animated Apple iPhone 3D Website',
-      description:
-        'Stunning 3D product showcase with smooth animations and interactive elements.',
-      image:
-        'https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=800',
-      category: '3D',
-      tech: ['Three.js', 'GSAP', 'React', 'Blender'],
-      liveUrl: '#',
-      githubUrl: '#',
-    },
-    {
-      id: 5,
-      title: 'TaskFlow - Project Management',
-      description:
-        'Collaborative project management tool with real-time updates and team features.',
-      image:
-        'https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=800',
-      category: 'Web App',
-      tech: ['React', 'Express', 'MongoDB', 'Socket.io'],
-      liveUrl: '#',
-      githubUrl: '#',
-    },
-    {
-      id: 6,
-      title: 'E-Commerce Platform',
-      description:
-        'Full-stack e-commerce solution with payment integration and admin dashboard.',
-      image:
-        'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800',
-      category: 'Web App',
-      tech: ['Next.js', 'Stripe', 'PostgreSQL', 'Prisma'],
-      liveUrl: '#',
-      githubUrl: '#',
-    },
-  ];
-
-  const categories = ['All', 'Web App', '3D', 'Design'];
-
-  const filteredProjects =
-    activeFilter === 'All'
-      ? projects
-      : projects.filter((project) => project.category === activeFilter);
+  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });
+  const [active, setActive] = useState(null);
 
   return (
     <section id="projects" className="py-20 bg-gray-900 relative overflow-hidden">
@@ -131,145 +121,117 @@ const Projects = () => {
         >
           <p className="text-purple-400 text-lg font-medium mb-4">MY WORK</p>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
-            Recent{' '}
+            Featured{" "}
             <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
               Projects
             </span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            A small selection of recent projects showcasing my skills in modern web
-            development and 3D graphics.
+            A showcase of my work in AI, Robotics, and Full Stack Development.
           </p>
         </motion.div>
 
-        {/* Filter Tabs */}
-        <div className="flex justify-center mb-12">
-          <div className="flex bg-gray-800/50 backdrop-blur-sm rounded-full p-2 border border-gray-700/50">
-            <Filter size={20} className="text-purple-400 m-3" />
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveFilter(category)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                  activeFilter === category
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
-                    : 'text-gray-400 hover:text-purple-400'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-
         {/* Projects Grid */}
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-          layout
-        >
-          {filteredProjects.map((project, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          {projects.map((project, index) => (
             <motion.div
               key={project.id}
-              layout
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <Tilt
-                tiltMaxAngleX={5}
-                tiltMaxAngleY={5}
-                perspective={1000}
-                transitionSpeed={1000}
-                gyroscope={true}
-              >
-                <div className="group h-[500px] flex flex-col bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-3xl overflow-hidden hover:border-purple-500/50 transition-all duration-500">
-                  {/* Project Image */}
-                  <div className="relative overflow-hidden h-60">
+              <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} perspective={900} transitionSpeed={900}>
+                <div
+                  onClick={() => setActive(active === project.id ? null : project.id)}
+                  className={`group relative bg-gray-800/60 backdrop-blur-md border border-gray-700/50 rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 ${
+                    active === project.id
+                      ? "border-purple-500/70 shadow-lg shadow-purple-500/30"
+                      : "hover:border-purple-400/50"
+                  }`}
+                >
+                  {/* Image */}
+                  <div className="relative overflow-hidden h-56">
                     <img
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent" />
-
-                    {/* Overlay Links */}
-                    <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <motion.a
-                        href={project.liveUrl}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="p-2 bg-gray-900/80 backdrop-blur-sm rounded-full text-purple-400 hover:text-purple-300"
-                      >
-                        <ExternalLink size={18} />
-                      </motion.a>
-                      <motion.a
-                        href={project.githubUrl}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="p-2 bg-gray-900/80 backdrop-blur-sm rounded-full text-purple-400 hover:text-purple-300"
-                      >
-                        <Github size={18} />
-                      </motion.a>
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 to-transparent" />
                   </div>
 
-                  {/* Project Info */}
-                  <div className="p-6 flex flex-col justify-between flex-grow">
+                  {/* Card Content */}
+                  <div className="p-6 flex flex-col justify-between">
                     <div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="px-3 py-1 bg-purple-600/20 border border-purple-500/30 rounded-full text-purple-400 text-sm font-medium">
+                      <div className="flex justify-between items-center mb-3">
+                        <span className="px-3 py-1 bg-purple-600/20 border border-purple-500/30 rounded-full text-purple-400 text-xs font-medium">
                           {project.category}
                         </span>
+                        <ChevronDown
+                          size={22}
+                          className={`transition-transform duration-300 ${
+                            active === project.id
+                              ? "rotate-180 text-purple-400"
+                              : "text-gray-400"
+                          }`}
+                        />
                       </div>
 
-                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors duration-300">
+                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">
                         {project.title}
                       </h3>
 
-                      <p className="text-gray-400 mb-4 leading-relaxed">
-                        {project.description}
-                      </p>
-                    </div>
+                      {/* Tech Icons (no empty boxes) */}
+                      <div className="flex flex-wrap gap-3 mb-4">
+                        {project.tech.map(
+                          (tech, i) =>
+                            techIcons[tech] && (
+                              <motion.img
+                                key={i}
+                                src={techIcons[tech]}
+                                alt={tech}
+                                title={tech}
+                                whileHover={{ scale: 1.15 }}
+                                className="w-9 h-9 object-contain transition-all duration-300"
+                              />
+                            )
+                        )}
+                      </div>
 
-                    {/* ✅ Glowing Tech Logos */}
-                    <div className="flex flex-wrap gap-3 mt-auto">
-                      {project.tech.map((tech, index) => (
-                        <motion.img
-                          key={index}
-                          src={techIcons[tech]}
-                          alt={tech}
-                          title={tech}
-                          whileHover={{
-                            scale: 1.2,
-                            filter: 'drop-shadow(0 0 8px rgba(168,85,247,0.9))',
-                          }}
-                          transition={{ duration: 0.3 }}
-                          className="w-8 h-8 object-contain transition-all duration-300"
-                        />
-                      ))}
+                      {/* Accordion Details */}
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={
+                          active === project.id
+                            ? { height: "auto", opacity: 1 }
+                            : { height: 0, opacity: 0 }
+                        }
+                        transition={{ duration: 0.4 }}
+                        className="overflow-hidden text-gray-400 text-sm leading-relaxed"
+                      >
+                        <p className="mb-3">{project.description}</p>
+
+                        <div className="flex gap-4 mt-3">
+                          <a
+                            href={project.live}
+                            className="flex items-center gap-2 text-purple-400 hover:text-pink-400 transition-colors"
+                          >
+                            <ExternalLink size={16} /> Live Demo
+                          </a>
+                          <a
+                            href="#contact"
+                            className="flex items-center gap-2 text-purple-400 hover:text-pink-400 transition-colors"
+                          >
+                            <Mail size={16} /> Contact Me
+                          </a>
+                        </div>
+                      </motion.div>
                     </div>
                   </div>
                 </div>
               </Tilt>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* View More Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-center mt-12"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold text-white hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
-          >
-            View All Projects
-          </motion.button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

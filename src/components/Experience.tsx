@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Calendar, MapPin, ExternalLink } from 'lucide-react';
+import { Calendar, MapPin } from 'lucide-react';
 
 const Experience = () => {
   const [ref, inView] = useInView({
@@ -10,63 +10,60 @@ const Experience = () => {
 
   const experiences = [
     {
-      company: 'Google Developer Student Club',
-      role: 'Frontend Lead',
-      period: '2024 - Present',
-      location: 'University Campus, Remote',
-      description:
-        'Leading workshops and mentoring peers on frontend technologies including React, Next.js, and TypeScript. Collaborating with developers to build impactful student projects.',
+      company: 'Betopia',
+      role: 'Full Stack Developer',
+      period: '2024 - 2025',
+      location: 'Remote',
+      description: 'Supported development team in organizing and executing software projects. Conducted research to enhance features and improve systems.',
       achievements: [
-        'Hosted 10+ coding sessions on modern web tools',
-        'Built and deployed community-driven web apps',
-        'Helped over 50 students improve frontend skills',
+        'Gained hands-on experience in software development lifecycle',
+        'Conducted technical research to improve system features',
+        'Collaborated with development teams on project execution',
+        'Developed problem-solving skills in real-world projects',
       ],
-      tech: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
       color: 'from-blue-500 to-purple-500',
     },
     {
-      company: 'Summer Internship — XYZ Tech',
-      role: 'Web Developer Intern',
-      period: 'Summer 2024',
-      location: 'Remote',
-      description:
-        'Worked closely with the engineering team to develop interactive dashboards and internal tools. Learned about production workflows, version control, and team collaboration.',
+      company: 'IUB Mars Rover Team',
+      role: 'Team Lead & Developer',
+      period: '2017 - 2024',
+      location: 'Independent University, Bangladesh',
+      description: 'Led a multidisciplinary team in developing Mars Rover for international competitions. Managed technical execution and team coordination.',
       achievements: [
-        'Implemented responsive UI with React and Tailwind',
-        'Improved component reusability across projects',
-        'Gained hands-on experience in Git and Agile sprints',
+        'Won 1st place in Asia at University Rover Challenge 2018',
+        'Managed project development and technical roadmap',
+        'Coordinated between software, hardware, and mechanical teams',
+        'Developed leadership and project management skills',
       ],
-      tech: ['React', 'Tailwind', 'Git', 'Vite'],
       color: 'from-green-500 to-teal-500',
     },
     {
-      company: 'Hackathon Projects',
-      role: 'Full Stack Developer',
-      period: '2023 - 2024',
-      location: 'Various Universities',
-      description:
-        'Participated in multiple national and university hackathons building innovative apps focused on sustainability and productivity. Collaborated in teams to deliver prototypes under tight deadlines.',
+      company: 'Freelance Development',
+      role: 'Backend Developer',
+      period: '2017 - 2018',
+      location: 'Fiverr - Remote',
+      description: 'Built and maintained backend systems for various web applications. Designed APIs and implemented scalable server-side solutions for clients.',
       achievements: [
-        'Won “Best UI/UX Design” at TechFest 2024',
-        'Built a climate tracking app using OpenWeather API',
-        'Integrated OpenAI API for AI-powered productivity tools',
+        'Developed multiple backend systems for client projects',
+        'Designed and implemented RESTful APIs',
+        'Gained experience in client communication and requirements',
+        'Learned to work with deadlines and project specifications',
       ],
-      tech: ['Node.js', 'React', 'OpenAI', 'MongoDB'],
       color: 'from-purple-500 to-pink-500',
     },
     {
-      company: 'Freelance Developer',
-      role: 'Student Freelancer',
-      period: '2022 - Present',
-      location: 'Remote',
-      description:
-        'Developing web applications and portfolio websites for small businesses and startups. Learning how to manage client communication, timelines, and full-stack deployments.',
+      company: 'Robotics Competitions',
+      role: 'Robotics Developer & Competitor',
+      period: '2017 - 2024',
+      location: 'National & International',
+      description: 'Participated in advanced robotics projects and competitions including University Rover Challenge, Technoxian, TRACTION, and other national events.',
       achievements: [
-        'Completed 10+ client projects',
-        'Delivered responsive and SEO-optimized websites',
-        'Maintained long-term client relationships',
+        'Competed in University Rover Challenge 2018 (1st in Asia)',
+        'Participated in Technoxian 2024 international robotics competition',
+        'Competed in TRACTION National Competition',
+        'Developed various robotics systems including SoccerBot, Line Follower, and BattleBot',
+        'Enhanced problem-solving and engineering skills through hands-on robotics development',
       ],
-      tech: ['Next.js', 'Firebase', 'Stripe', 'Vercel'],
       color: 'from-orange-500 to-red-500',
     },
   ];
@@ -91,7 +88,7 @@ const Experience = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-purple-400 text-lg font-medium mb-4"
           >
-            MY JOURNEY
+            MY DEVELOPMENT JOURNEY
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -99,8 +96,16 @@ const Experience = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-4xl md:text-5xl font-bold text-white mb-8"
           >
-            Student <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">Experience</span>
+            Experience & <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">Projects</span>
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-gray-400 text-lg max-w-2xl mx-auto"
+          >
+            Combining academic learning with practical experience through projects, competitions, and professional work
+          </motion.p>
         </motion.div>
 
         {/* Timeline */}
@@ -130,15 +135,9 @@ const Experience = () => {
                     <div className={`absolute inset-0 bg-gradient-to-br ${exp.color} opacity-5 rounded-3xl`} />
                     <div className="relative z-10">
                       {/* Header */}
-                      <div className="flex items-start justify-between mb-4">
-                        <div>
-                          <h3 className="text-xl font-bold text-white mb-1">{exp.company}</h3>
-                          <p className="text-purple-400 font-medium mb-2">{exp.role}</p>
-                        </div>
-                        <ExternalLink
-                          size={18}
-                          className="text-gray-400 hover:text-purple-400 transition-colors duration-300 cursor-pointer hover-target"
-                        />
+                      <div className="mb-4">
+                        <h3 className="text-xl font-bold text-white mb-1">{exp.company}</h3>
+                        <p className="text-purple-400 font-medium mb-2">{exp.role}</p>
                       </div>
 
                       {/* Meta Info */}
@@ -158,31 +157,15 @@ const Experience = () => {
 
                       {/* Achievements */}
                       <div className="mb-4">
-                        <h4 className="text-white font-semibold mb-2">Key Highlights:</h4>
-                        <ul className="space-y-1">
+                        <h4 className="text-white font-semibold mb-2">Key Learnings & Achievements:</h4>
+                        <ul className="space-y-2">
                           {exp.achievements.map((achievement, achIndex) => (
                             <li key={achIndex} className="flex items-start text-sm text-gray-400">
                               <div className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0" />
-                              {achievement}
+                              <span>{achievement}</span>
                             </li>
                           ))}
                         </ul>
-                      </div>
-
-                      {/* Technologies */}
-                      <div className="flex flex-wrap gap-2">
-                        {exp.tech.map((tech, techIndex) => (
-                          <img
-                            key={techIndex}
-                            src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech
-                              .toLowerCase()
-                              .replace(/\s+/g, '-')}/${tech
-                              .toLowerCase()
-                              .replace(/\s+/g, '-')}-original.svg`}
-                            alt={tech}
-                            className="h-6 w-6 opacity-80 hover:opacity-100 transition duration-300 hover:drop-shadow-[0_0_6px_rgba(168,85,247,0.8)]"
-                          />
-                        ))}
                       </div>
                     </div>
                   </div>
@@ -199,13 +182,16 @@ const Experience = () => {
           transition={{ duration: 0.8, delay: 1 }}
           className="text-center mt-16"
         >
-          <motion.button
+          <motion.a
+            href="/resume/Samiun_Mahmud_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold text-white hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 hover-target"
+            className="inline-block px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold text-white hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 hover-target cursor-pointer"
           >
             Download Resume
-          </motion.button>
+          </motion.a>
         </motion.div>
       </div>
     </section>

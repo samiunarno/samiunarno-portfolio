@@ -3,22 +3,58 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 /* =======================
-   TECHNOLOGIES DATA
+   TECHNOLOGIES DATA (UPDATED)
    ======================= */
 const technologies = [
-  { name: "HTML 5", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-  { name: "CSS 3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+  // 🧠 Programming Languages
+  { name: "C / C++", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" },
+  { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+  { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
   { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
   { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-  { name: "React JS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-  { name: "Redux Toolkit", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
-  { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" },
-  { name: "Node JS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-  { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-  { name: "Three JS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg" },
-  { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-  { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
-  { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+
+  // 🎨 Frontend Development
+  { name: "React JS", icon: "https://skillicons.dev/icons?i=react" },
+  { name: "Next JS", icon: "https://skillicons.dev/icons?i=nextjs" },
+  { name: "Vue JS", icon: "https://skillicons.dev/icons?i=vue" },
+  { name: "Nuxt JS", icon: "https://skillicons.dev/icons?i=nuxtjs" },
+  { name: "Angular", icon: "https://skillicons.dev/icons?i=angular" },
+  { name: "Tailwind CSS", icon: "https://skillicons.dev/icons?i=tailwind" },
+  { name: "Three JS", icon: "https://skillicons.dev/icons?i=threejs" },
+
+  // ⚙️ Backend Development
+  { name: "Node JS", icon: "https://skillicons.dev/icons?i=nodejs" },
+  { name: "Express JS", icon: "https://skillicons.dev/icons?i=express" },
+  { name: "Spring Boot", icon: "https://skillicons.dev/icons?i=spring" },
+  { name: "GraphQL", icon: "https://skillicons.dev/icons?i=graphql" },
+
+  // 💾 Databases
+  { name: "MongoDB", icon: "https://skillicons.dev/icons?i=mongodb" },
+  { name: "PostgreSQL", icon: "https://skillicons.dev/icons?i=postgresql" },
+  { name: "MySQL", icon: "https://skillicons.dev/icons?i=mysql" },
+  { name: "Oracle", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" },
+
+  // 🤖 AI / ML / Data Science
+  { name: "TensorFlow", icon: "https://skillicons.dev/icons?i=tensorflow" },
+  { name: "Keras", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/keras/keras-original.svg" },
+  { name: "Scikit-Learn", icon: "https://skillicons.dev/icons?i=scikitlearn" },
+  { name: "OpenCV", icon: "https://skillicons.dev/icons?i=opencv" },
+  { name: "PyTorch", icon: "https://skillicons.dev/icons?i=pytorch" },
+
+  // 🤖 Robotics & Embedded Systems
+  { name: "Arduino", icon: "https://skillicons.dev/icons?i=arduino" },
+  { name: "Raspberry Pi", icon: "https://skillicons.dev/icons?i=raspberrypi" },
+
+  // ☁️ DevOps / Tools
+  { name: "Docker", icon: "https://skillicons.dev/icons?i=docker" },
+  { name: "Git", icon: "https://skillicons.dev/icons?i=git" },
+  { name: "GitHub", icon: "https://skillicons.dev/icons?i=github" },
+  { name: "GitHub Actions", icon: "https://skillicons.dev/icons?i=githubactions" },
+  { name: "Linux", icon: "https://skillicons.dev/icons?i=linux" },
+  { name: "AWS", icon: "https://skillicons.dev/icons?i=aws" },
+
+  // 🎨 Design Tools
+  { name: "Figma", icon: "https://skillicons.dev/icons?i=figma" },
 ];
 
 /* =======================
@@ -96,11 +132,7 @@ const TechCard = ({ tech, index }) => {
             transition={{ type: "spring", stiffness: 200, damping: 15, duration: 1 }}
             className="flex items-center justify-center w-full h-full rounded-2xl bg-gradient-to-br from-gray-700/60 to-gray-600/40 transition-all duration-500"
           >
-            <img
-              src={tech.icon}
-              alt={tech.name}
-              className="w-10 h-10 md:w-12 md:h-12 object-contain"
-            />
+            <img src={tech.icon} alt={tech.name} className="w-10 h-10 md:w-12 md:h-12 object-contain" />
           </motion.div>
 
           {/* Hover Glow */}
@@ -112,7 +144,7 @@ const TechCard = ({ tech, index }) => {
         </motion.div>
       </motion.div>
 
-      {/* tech name tooltip */}
+      {/* Tooltip */}
       {isHovering && (
         <motion.span
           initial={{ opacity: 0, y: 6 }}
@@ -134,37 +166,33 @@ const Skills = () => {
   const [ref, inView] = useInView({ threshold: 0.25, triggerOnce: true });
 
   return (
-    <section
-      id="skills"
-      ref={ref}
-      className="relative py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden"
-    >
-      {/* background glows */}
+    <section id="skills" ref={ref} className="relative py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
+      {/* Background glows */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-40 -left-20 w-[400px] h-[400px] rounded-full bg-purple-500/10 blur-3xl" />
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-pink-500/10 blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">
-    Building Skills
-    <span className="block bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
-      For The Future
-    </span>
-  </h2>
+            Building Skills
+            <span className="block bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+              For The Future
+            </span>
+          </h2>
           <p className="text-gray-400 max-w-2xl mx-auto mt-4">
-            A sleek, interactive showcase of my technologies — hover to tilt and watch them spin.
+            A complete showcase of my technical stack — spanning full-stack, AI, robotics, and DevOps tools.
           </p>
         </motion.div>
 
-        {/* grid */}
+        {/* Grid */}
         <motion.div
           variants={containerVariant}
           initial="hidden"
@@ -175,19 +203,6 @@ const Skills = () => {
             <TechCard key={tech.name} tech={tech} index={i} />
           ))}
         </motion.div>
-
-        {/* description box */}
-        {/* <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-16 p-6 md:p-8 rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 max-w-3xl mx-auto text-center"
-        >
-          <h3 className="text-xl md:text-2xl font-bold text-white mb-3">My Tech Stack</h3>
-          <p className="text-gray-300">
-            I work across front-end and back-end technologies to build complete, high-performance web experiences.
-          </p>
-        </motion.div> */}
       </div>
     </section>
   );
