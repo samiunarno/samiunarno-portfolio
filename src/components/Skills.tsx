@@ -3,18 +3,15 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 /* =======================
-   TECHNOLOGIES DATA (UPDATED)
+   TECHNOLOGIES DATA
    ======================= */
 const technologies = [
-  // 🧠 Programming Languages
   { name: "C / C++", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" },
   { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
   { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
   { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
   { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
   { name: "GoLang", icon: "https://skillicons.dev/icons?i=go" },
-
-  // 🎨 Frontend Development
   { name: "React JS", icon: "https://skillicons.dev/icons?i=react" },
   { name: "Next JS", icon: "https://skillicons.dev/icons?i=nextjs" },
   { name: "Vue JS", icon: "https://skillicons.dev/icons?i=vue" },
@@ -22,40 +19,19 @@ const technologies = [
   { name: "Angular", icon: "https://skillicons.dev/icons?i=angular" },
   { name: "Tailwind CSS", icon: "https://skillicons.dev/icons?i=tailwind" },
   { name: "Three JS", icon: "https://skillicons.dev/icons?i=threejs" },
-
-  // ⚙️ Backend Development
   { name: "Node JS", icon: "https://skillicons.dev/icons?i=nodejs" },
   { name: "Express JS", icon: "https://skillicons.dev/icons?i=express" },
   { name: "Spring Boot", icon: "https://skillicons.dev/icons?i=spring" },
   { name: "GraphQL", icon: "https://skillicons.dev/icons?i=graphql" },
-
-  // 💾 Databases
   { name: "MongoDB", icon: "https://skillicons.dev/icons?i=mongodb" },
   { name: "PostgreSQL", icon: "https://skillicons.dev/icons?i=postgresql" },
   { name: "MySQL", icon: "https://skillicons.dev/icons?i=mysql" },
-  { name: "Oracle", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" },
-
-  // 🤖 AI / ML / Data Science
   { name: "TensorFlow", icon: "https://skillicons.dev/icons?i=tensorflow" },
   { name: "Keras", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/keras/keras-original.svg" },
-  { name: "Scikit-Learn", icon: "https://skillicons.dev/icons?i=scikitlearn" },
-  { name: "OpenCV", icon: "https://skillicons.dev/icons?i=opencv" },
   { name: "PyTorch", icon: "https://skillicons.dev/icons?i=pytorch" },
-  { name: "Robotic Operating System (ROS)", icon: "https://skillicons.dev/icons?i=ros" },
-
-  // 🤖 Robotics & Embedded Systems
-  { name: "Arduino", icon: "https://skillicons.dev/icons?i=arduino" },
-  { name: "Raspberry Pi", icon: "https://skillicons.dev/icons?i=raspberrypi" },
-
-  // ☁️ DevOps / Tools
   { name: "Docker", icon: "https://skillicons.dev/icons?i=docker" },
-  { name: "Git", icon: "https://skillicons.dev/icons?i=git" },
-  { name: "GitHub", icon: "https://skillicons.dev/icons?i=github" },
-  { name: "GitHub Actions", icon: "https://skillicons.dev/icons?i=githubactions" },
-  { name: "Linux", icon: "https://skillicons.dev/icons?i=linux" },
   { name: "AWS", icon: "https://skillicons.dev/icons?i=aws" },
-
-  // 🎨 Design Tools
+  { name: "GitHub", icon: "https://skillicons.dev/icons?i=github" },
   { name: "Figma", icon: "https://skillicons.dev/icons?i=figma" },
 ];
 
@@ -67,16 +43,26 @@ const containerVariant = {
   show: { opacity: 1, y: 0, transition: { staggerChildren: 0.06, when: "beforeChildren" } },
 };
 
-const floatVariant = {
-  float: {
-    y: [0, -6, 0],
-    transition: { duration: 4 + Math.random() * 2, repeat: Infinity, ease: "easeInOut" },
-  },
-};
-
+// 3D entrance animation (flat → wide)
 const cardEntrance = (i) => ({
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { delay: i * 0.06, duration: 0.5, ease: "easeOut" } },
+  hidden: {
+    opacity: 0,
+    y: 40,
+    scale: 0.9,
+    rotateX: 40,
+    transformPerspective: 800,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotateX: 0,
+    transition: {
+      delay: i * 0.06,
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
 });
 
 /* =======================
@@ -110,12 +96,11 @@ const TechCard = ({ tech, index }) => {
       variants={cardEntrance(index)}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.4 }}
+      viewport={{ once: true, amount: 0.3 }}
       className="relative flex items-center justify-center"
     >
+      {/* Removed float animation here */}
       <motion.div
-        variants={floatVariant}
-        animate="float"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onMouseEnter={handleMouseEnter}
@@ -129,13 +114,17 @@ const TechCard = ({ tech, index }) => {
           transition={{ type: "spring", stiffness: 200, damping: 20 }}
           className="w-full h-full rounded-2xl bg-gradient-to-br from-gray-800 via-gray-900 to-black border border-white/10 shadow-lg flex items-center justify-center overflow-hidden"
         >
-          <motion.div
-            animate={isHovering ? { rotate: 360 } : { rotate: 0 }}
-            transition={{ type: "spring", stiffness: 200, damping: 15, duration: 1 }}
-            className="flex items-center justify-center w-full h-full rounded-2xl bg-gradient-to-br from-gray-700/60 to-gray-600/40 transition-all duration-500"
-          >
-            <img src={tech.icon} alt={tech.name} className="w-10 h-10 md:w-12 md:h-12 object-contain" />
-          </motion.div>
+          {/* Background (still) */}
+          <div className="flex items-center justify-center w-full h-full rounded-2xl bg-gradient-to-br from-gray-700/60 to-gray-600/40 transition-all duration-500">
+            {/* Icon (spins only) */}
+            <motion.img
+              src={tech.icon}
+              alt={tech.name}
+              animate={isHovering ? { rotate: 360 } : { rotate: 0 }}
+              transition={{ type: "spring", stiffness: 200, damping: 15, duration: 1 }}
+              className="w-10 h-10 md:w-12 md:h-12 object-contain"
+            />
+          </div>
 
           {/* Hover Glow */}
           <motion.div

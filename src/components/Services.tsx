@@ -5,7 +5,7 @@ import {
   Smartphone,
   Database,
   Palette,
-  Code2,
+  Bot,
   Zap,
   ArrowRight,
 } from "lucide-react";
@@ -18,17 +18,56 @@ const Services = () => {
 
   const services = [
     {
-      icon: Globe,
-      title: "Web Development",
+      icon: Bot,
+      title: "ROS Development",
       description:
-        "Crafting responsive, interactive web applications with React, Next.js, and Node.js for an exceptional user experience.",
+        "Building intelligent robotic systems using the Robot Operating System (ROS), integrating sensors, computer vision, and autonomous control pipelines.",
       features: [
-        "Responsive Interfaces",
-        "Modern Frameworks",
-        "Clean Code Practices",
-        "Scalable Architecture",
+        "ROS1 & ROS2 Frameworks",
+        "SLAM & Navigation",
+        "Sensor Integration",
+        "Autonomous Control Systems",
       ],
       color: "from-blue-500 via-cyan-400 to-cyan-500",
+    },
+    {
+      icon: Globe,
+      title: "Full Stack Development",
+      description:
+        "Building seamless, end-to-end web applications — from dynamic frontends to secure backends — using modern JavaScript frameworks.",
+      features: [
+        "Frontend & Backend Expertise",
+        "API Development",
+        "Database Design",
+        "Cloud & DevOps Integration",
+      ],
+      color: "from-purple-500 via-pink-400 to-pink-500",
+    },
+    {
+      icon: Database,
+      title: "Deep Learning",
+      description:
+        "Exploring neural networks and AI systems to create models for computer vision, natural language processing, and intelligent automation.",
+      features: [
+        "Neural Network Design",
+        "TensorFlow & PyTorch",
+        "Model Optimization",
+        "AI Research & Applications",
+      ],
+      color: "from-green-500 via-emerald-400 to-emerald-500",
+    },
+    {
+      icon: Palette,
+      title: "AI, Robotics & 3D Projects",
+      description:
+        "Exploring AI, deep learning, and robotics while bringing visuals to life using 3D technologies like Three.js.",
+      features: [
+        "TensorFlow & Keras",
+        "Computer Vision",
+        "3D Visualization",
+        "Robotics Prototyping",
+      ],
+      color: "from-violet-500 via-purple-400 to-purple-500",
     },
     {
       icon: Smartphone,
@@ -41,46 +80,7 @@ const Services = () => {
         "Native UI Components",
         "App Store Ready",
       ],
-      color: "from-purple-500 via-pink-400 to-pink-500",
-    },
-    {
-      icon: Database,
-      title: "Backend & Databases",
-      description:
-        "Designing reliable backend systems and APIs using Node.js, Express, and MongoDB with focus on security and efficiency.",
-      features: [
-        "RESTful APIs",
-        "Data Modeling",
-        "Cloud Integration",
-        "Authentication",
-      ],
-      color: "from-green-500 via-emerald-400 to-emerald-500",
-    },
-    {
-      icon: Palette,
-      title: "UI / UX & Design",
-      description:
-        "Designing intuitive and aesthetic interfaces that deliver clarity, flow, and a delightful user experience.",
-      features: [
-        "Wireframing & Prototyping",
-        "User-Centered Design",
-        "Visual Consistency",
-        "Accessibility Focus",
-      ],
       color: "from-orange-500 via-red-400 to-red-500",
-    },
-    {
-      icon: Code2,
-      title: "AI, Robotics & 3D Projects",
-      description:
-        "Exploring AI, deep learning, and robotics while bringing visuals to life using 3D technologies like Three.js.",
-      features: [
-        "TensorFlow & Keras",
-        "Computer Vision",
-        "3D Visualization",
-        "Robotics Prototyping",
-      ],
-      color: "from-violet-500 via-purple-400 to-purple-500",
     },
     {
       icon: Zap,
@@ -124,9 +124,9 @@ const Services = () => {
             </span>
           </h2>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
-            I’m passionate about creating impactful digital solutions, exploring
-            AI and robotics, and continuously learning through real-world
-            projects and collaboration.
+            I’m passionate about developing robotic systems, full-stack
+            applications, deep learning models, and exploring AI, 3D, and
+            research-driven innovation.
           </p>
         </motion.div>
 

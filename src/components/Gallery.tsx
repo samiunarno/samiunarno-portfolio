@@ -1,97 +1,188 @@
-import { motion } from "framer-motion";
+"use client";
+import React, { useLayoutEffect, useRef } from "react";
 
-const GalleryCarousel = () => {
-  const row1 = [
-    "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3184454/pexels-photo-3184454.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3183171/pexels-photo-3183171.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3184300/pexels-photo-3184300.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3184455/pexels-photo-3184455.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3183172/pexels-photo-3183172.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3184463/pexels-photo-3184463.jpeg?auto=compress&cs=tinysrgb&w=1600",
-  ];
+/* -------------------------------------------------------------------------- */
+/*                                MARQUEE ROW                                 */
+/* -------------------------------------------------------------------------- */
+interface MarqueeProps {
+  images: string[];
+  direction?: "left" | "right";
+  speed?: number;
+}
 
-  const row2 = [
-    "https://images.pexels.com/photos/3184468/pexels-photo-3184468.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3773838/pexels-photo-3773838.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3182744/pexels-photo-3182744.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3184467/pexels-photo-3184467.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3184460/pexels-photo-3184460.jpeg?auto=compress&cs=tinysrgb&w=1600",
-  ];
+const Marquee: React.FC<MarqueeProps> = ({
+  images,
+  direction = "left",
+  speed = 40,
+}) => {
+  // ✅ Filter out invalid sources
+  const validImages = images.filter(
+    (src) => src && typeof src === "string" && !src.includes("Marquee Image")
+  );
 
-  const row3 = [
-    "https://images.pexels.com/photos/1181355/pexels-photo-1181355.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/196655/pexels-photo-196655.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3184313/pexels-photo-3184313.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3182776/pexels-photo-3182776.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3183175/pexels-photo-3183175.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3183185/pexels-photo-3183185.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3182750/pexels-photo-3182750.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3183188/pexels-photo-3183188.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    "https://images.pexels.com/photos/3184323/pexels-photo-3184323.jpeg?auto=compress&cs=tinysrgb&w=1600",
-  ];
-
-  const duplicate = (arr) => [...arr, ...arr];
+  const marqueeImages = [...validImages, ...validImages];
+  const dir = direction === "left" ? "normal" : "reverse";
 
   return (
-    <section className="relative py-28 bg-gray-950 overflow-hidden">
+    <div className="relative flex overflow-hidden group select-none">
+      <div
+        className="flex items-center animate-marquee group-hover:[animation-play-state:paused]"
+        style={{
+          animationDuration: `${speed}s`,
+          animationDirection: dir,
+        }}
+      >
+        {marqueeImages.map((src, i) => (
+          <div
+            key={i}
+            className="flex-shrink-0 w-[45vw] sm:w-[35vw] md:w-[28vw] lg:w-[22vw] xl:w-[18vw] mx-4"
+          >
+            <img
+              src={src}
+              alt={`Gallery image ${i + 1}`}
+              onError={(e) => (e.currentTarget.style.display = "none")}
+              className="w-full aspect-[16/9] object-cover rounded-2xl shadow-lg 
+              transition-transform duration-500 ease-[cubic-bezier(0.65,0.05,0.36,1)]"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+/* -------------------------------------------------------------------------- */
+/*                           3D MARQUEE GALLERY SECTION                        */
+/* -------------------------------------------------------------------------- */
+const GalleryMarqueeSection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const marqueeContainerRef = useRef<HTMLDivElement>(null);
+
+  /* ------------------------- GSAP Scroll 3D Tilt ------------------------- */
+  useLayoutEffect(() => {
+    const gsap = (window as any).gsap;
+    const ScrollTrigger = (window as any).ScrollTrigger;
+
+    if (gsap && ScrollTrigger && sectionRef.current) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "center center",
+          scrub: 1.5,
+        },
+      });
+
+      gsap.set(marqueeContainerRef.current, {
+        rotateX: 45,
+        scale: 0.85,
+        y: "-15vh",
+        autoAlpha: 0.6,
+      });
+
+      tl.to(marqueeContainerRef.current, {
+        rotateX: 0,
+        scale: 1,
+        y: 0,
+        autoAlpha: 1,
+        duration: 1.2,
+        ease: "power2.out",
+      });
+
+      return () => {
+        if (tl.scrollTrigger) tl.scrollTrigger.kill();
+        tl.kill();
+      };
+    }
+  }, []);
+
+  /* -------------------------- ALL IMAGES (A–Z) -------------------------- */
+  const allImages = [
+    "/assets/smart bin pic-01_1600x907.jpg",
+    "/assets/att.jpg",
+    "/assets/sock.jpg",
+    "/assets/c1.jpg",
+    "/assets/ch1.jpg",
+    "/assets/Connect-ROS.png",
+    "/assets/Screenshot 2023-05-18 033647.png",
+    "/assets/Screenshot 2023-05-18 033710.png",
+    "/assets/Screenshot 2023-05-19 041052.png",
+    "/assets/IMG_2215.jpg",
+    "/assets/p1.jpg",
+    "/assets/meg1.jpg",
+    "/assets/p2.jpg",
+    "/assets/p3.jpg",
+    "/assets/IMG_0670.JPG",
+    "/assets/IMG_0661.JPG",
+    "/assets/IMG_0662.JPG",
+    "/assets/IMG_1101.jpg",
+    "/assets/con10.JPG",
+    "/assets/con11.JPG",
+    "/assets/con12.JPG",
+    "/assets/con13.JPG",
+    "/assets/con14.JPG",
+    "/assets/con2.JPG",
+    "/assets/con3.JPG",
+    "/assets/con4.JPG",
+    "/assets/con5.JPG",
+    "/assets/con6.JPG",
+    "/assets/con7.JPG",
+    "/assets/con8.JPG",
+    "/assets/con9.JPG",
+    "/assets/Con1.JPEG",
+    "/assets/Screenshot 2023-05-19 041117.png",
+    "/assets/Screenshot 2023-11-05 171409.png",
+    "/assets/v3.png",
+    "/assets/v6.png",
+    "/assets/v7.png",
+    "/assets/v8.png",
+    "/assets/w2.png",
+    "/assets/5E9C2DBF-214B-4370-8295-157C570A8ED5.JPG",
+    "/assets/6b7bb27e6ac64164ed48d101a8452a70.JPEG",
+  ];
+
+  // Split evenly into 4 marquee rows
+  const rows = [
+    allImages.slice(0, Math.ceil(allImages.length / 4)),
+    allImages.slice(Math.ceil(allImages.length / 4), Math.ceil(allImages.length / 2)),
+    allImages.slice(Math.ceil(allImages.length / 2), Math.ceil((3 * allImages.length) / 4)),
+    allImages.slice(Math.ceil((3 * allImages.length) / 4)),
+  ];
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative py-24 md:py-36 bg-background overflow-hidden"
+      style={{ perspective: "1500px" }}
+    >
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-950 to-black" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/70 to-background pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold text-white">
-            Infinite{" "}
-            <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
-              Professional Carousel
-            </span>
-          </h2>
-          <p className="text-gray-400 mt-4 text-lg">
-            All rows scroll in sync from right → left for a clean, modern visual flow.
-          </p>
-        </div>
-
-        <div className="flex flex-col gap-12">
-          {[row1, row2, row3].map((row, idx) => (
-            <motion.div
-              key={idx}
-              className="flex gap-8"
-              animate={{ x: ["-50%", "0%"] }}
-              transition={{
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 95 + idx * 5, // subtle variation for depth
-                ease: "linear",
-              }}
-            >
-              {duplicate(row).map((src, i) => (
-                <div
-                  key={`${idx}-${i}`}
-                  className="flex-shrink-0 w-[320px] h-[190px] overflow-hidden rounded-2xl border border-gray-800/50 bg-gray-900/40 hover:border-purple-500/40 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-500"
-                >
-                  <img
-                    src={src}
-                    alt=""
-                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
-                  />
-                </div>
-              ))}
-            </motion.div>
-          ))}
-        </div>
+      {/* Title + Subtitle */}
+      <div className="relative z-10 container mx-auto px-6 text-center mb-20">
+        <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
+          <span className="text-white">Moments</span>{" "}
+          <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+            in Motion
+          </span>
+        </h2>
+        <p className="text-gray-400 mt-6 text-lg md:text-xl max-w-2xl mx-auto">
+          A seamless flow of captured memories — authentic, vivid, and full of life.
+        </p>
       </div>
 
-      {/* Edge fade overlays */}
-      <div className="pointer-events-none absolute top-0 left-0 w-40 h-full bg-gradient-to-r from-gray-950 to-transparent" />
-      <div className="pointer-events-none absolute top-0 right-0 w-40 h-full bg-gradient-to-l from-gray-950 to-transparent" />
+      {/* Marquee Rows */}
+      <div ref={marqueeContainerRef} className="relative z-10 flex flex-col gap-10">
+        <Marquee images={rows[0]} direction="left" speed={45} />
+        <Marquee images={rows[1]} direction="right" speed={50} />
+        <Marquee images={rows[2]} direction="left" speed={55} />
+        <Marquee images={rows[3]} direction="right" speed={60} />
+      </div>
     </section>
   );
 };
 
-export default GalleryCarousel;
+export default GalleryMarqueeSection;
