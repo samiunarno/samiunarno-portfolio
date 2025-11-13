@@ -12,6 +12,7 @@ const technologies = [
   { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
   { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
   { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+  { name: "GoLang", icon: "https://skillicons.dev/icons?i=go" },
 
   // 🎨 Frontend Development
   { name: "React JS", icon: "https://skillicons.dev/icons?i=react" },
@@ -40,6 +41,7 @@ const technologies = [
   { name: "Scikit-Learn", icon: "https://skillicons.dev/icons?i=scikitlearn" },
   { name: "OpenCV", icon: "https://skillicons.dev/icons?i=opencv" },
   { name: "PyTorch", icon: "https://skillicons.dev/icons?i=pytorch" },
+  { name: "Robotic Operating System (ROS)", icon: "https://skillicons.dev/icons?i=ros" },
 
   // 🤖 Robotics & Embedded Systems
   { name: "Arduino", icon: "https://skillicons.dev/icons?i=arduino" },
@@ -166,7 +168,11 @@ const Skills = () => {
   const [ref, inView] = useInView({ threshold: 0.25, triggerOnce: true });
 
   return (
-    <section id="skills" ref={ref} className="relative py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
+    <section
+      id="skills"
+      ref={ref}
+      className="relative py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden"
+    >
       {/* Background glows */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-40 -left-20 w-[400px] h-[400px] rounded-full bg-purple-500/10 blur-3xl" />
