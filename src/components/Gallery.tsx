@@ -111,7 +111,7 @@ const GalleryMarqueeSection: React.FC = () => {
     "/assets/sock.jpg",
     "/assets/c1.jpg",
     "/assets/ch1.jpg",
-    "/assets/connect-ROS.png",
+    "/assets/g4.png",
     "/assets/screenshot-2023-05-18-033647.png",
     "/assets/screenshot-2023-05-18-033710.png",
     "/assets/screenshot-2023-05-19-041052.png",

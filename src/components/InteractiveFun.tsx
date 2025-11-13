@@ -26,7 +26,7 @@ const FeaturedProjects3D: React.FC = () => {
       title: "ConnectROS Platform",
       desc: "Web-based hub for managing and visualizing robotics data using ROS nodes.",
       tech: ["Next.js", "ROS", "WebSockets"],
-      img: "/assets/connect-ROS.png",
+      img: "/assets/connect-ros.png",
     },
     {
       title: "Creative Portfolio UI",

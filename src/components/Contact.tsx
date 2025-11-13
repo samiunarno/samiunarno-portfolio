@@ -49,12 +49,12 @@ const Contact = () => {
       value: 'samiunarnouk@gmail.com',
       href: 'mailto:samiunarnouk@gmail.com',
     },
-    {
-      icon: Phone,
-      label: 'Phone',
-      value: '+385 99 123 4567',
-      href: 'tel:+385991234567',
-    },
+    // {
+    //   icon: Phone,
+    //   label: 'Phone',
+    //   value: '+18584342998',
+    //   href: 'tel:+18584342998',
+    // },
     // {
     //   icon: MapPin,
     //   label: 'Location',
