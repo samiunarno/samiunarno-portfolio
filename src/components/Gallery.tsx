@@ -1,33 +1,54 @@
-import React, { useLayoutEffect, useRef } from "react";
-import "./GalleryMarqueeSection.css"; // 👈 animation CSS import করুন
+"use client";
+
+import React, { useLayoutEffect, useRef, useMemo } from "react";
 
 /* -------------------------------------------------------------------------- */
 /*                                MARQUEE ROW                                 */
 /* -------------------------------------------------------------------------- */
-const Marquee = ({ images, direction = "left", speed = 40 }) => {
-  const marqueeImages = [...images, ...images];
-  const dir = direction === "left" ? "normal" : "reverse";
+interface MarqueeProps {
+  images: string[];
+  direction?: "left" | "right";
+  speed?: number;
+}
+
+const Marquee: React.FC<MarqueeProps> = ({
+  images,
+  direction = "left",
+  speed = 40,
+}) => {
+  const validImages = useMemo(
+    () =>
+      images.filter(
+        (src) => src && typeof src === "string" && !src.includes("Marquee Image")
+      ),
+    [images]
+  );
+
+  const marqueeImages = [...validImages, ...validImages];
+  const animationDirection = direction === "left" ? "normal" : "reverse";
 
   return (
-    <div className="relative flex overflow-hidden group select-none">
+    <div className="relative flex overflow-hidden select-none group">
       <div
         className="flex items-center animate-marquee group-hover:[animation-play-state:paused]"
         style={{
           animationDuration: `${speed}s`,
-          animationDirection: dir,
+          animationDirection,
         }}
       >
-        {marqueeImages.map((src, i) => (
+        {marqueeImages.map((src, index) => (
           <div
-            key={i}
-            className="flex-shrink-0 w-[45vw] sm:w-[35vw] md:w-[28vw] lg:w-[22vw] xl:w-[18vw] mx-4"
+            key={index}
+            className="flex-shrink-0 w-[45vw] sm:w-[35vw] md:w-[28vw] lg:w-[22vw] xl:w-[18vw] mx-4 aspect-[16/9] relative bg-gray-800 rounded-2xl overflow-hidden shadow-lg"
           >
             <img
               src={src}
-              alt={`Gallery ${i + 1}`}
-              className="w-full aspect-[16/9] object-cover rounded-2xl shadow-lg transition-transform duration-500 ease-[cubic-bezier(0.65,0.05,0.36,1)]"
+              alt={`Gallery image ${index + 1}`}
+              className="w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.65,0.05,0.36,1)]"
               loading="lazy"
-              onError={(e) => (e.target.style.display = "none")}
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+              }}
             />
           </div>
         ))}
@@ -37,61 +58,19 @@ const Marquee = ({ images, direction = "left", speed = 40 }) => {
 };
 
 /* -------------------------------------------------------------------------- */
-/*                           3D MARQUEE GALLERY SECTION                        */
+/*                        3D MARQUEE GALLERY SECTION                         */
 /* -------------------------------------------------------------------------- */
+const GalleryMarqueeSection: React.FC = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const marqueeContainerRef = useRef<HTMLDivElement>(null);
 
-// ✅ সব ইমেজ import — public নয়, src/assets ফোল্ডার থেকে
-import img1 from "../../assets/smart-bin-pic-01_1600x907.jpg";
-import img2 from "../../assets/att.jpg";
-import img3 from "../../assets/sock.jpg";
-import img4 from "../../assets/c1.jpg";
-import img5 from "../../assets/ch1.jpg";
-import img6 from "../../assets/Connect-ROS.png";
-import img7 from "../../assets/Screenshot-2023-05-18-033647.png";
-import img8 from "../../assets/Screenshot-2023-05-18-033710.png";
-import img9 from "../../assets/Screenshot-2023-05-19-041052.png";
-import img10 from "../../assets/IMG_2215.jpg";
-import img11 from "../../assets/p1.jpg";
-import img12 from "../../assets/meg1.jpg";
-import img13 from "../../assets/p2.jpg";
-import img14 from "../../assets/p3.jpg";
-import img15 from "../../assets/IMG_0670.JPG";
-import img16 from "../../assets/IMG_0661.JPG";
-import img17 from "../../assets/IMG_0662.JPG";
-import img18 from "../../assets/IMG_1101.jpg";
-import img19 from "../../assets/con10.JPG";
-import img20 from "../../assets/con11.JPG";
-import img21 from "../../assets/con12.JPG";
-import img22 from "../../assets/con13.JPG";
-import img23 from "../../assets/con14.JPG";
-import img24 from "../../assets/con2.JPG";
-import img25 from "../../assets/con3.JPG";
-import img26 from "../../assets/con4.JPG";
-import img27 from "../../assets/con5.JPG";
-import img28 from "../../assets/con6.JPG";
-import img29 from "../../assets/con7.JPG";
-import img30 from "../../assets/con8.JPG";
-import img31 from "../../assets/con9.JPG";
-import img32 from "../../assets/Con1.JPEG";
-import img33 from "../../assets/Screenshot-2023-05-19-041117.png";
-import img34 from "../../assets/Screenshot-2023-11-05-171409.png";
-import img35 from "../../assets/v3.png";
-import img36 from "../../assets/v6.png";
-import img37 from "../../assets/v7.png";
-import img38 from "../../assets/v8.png";
-import img39 from "../../assets/w2.png";
-import img40 from "../../assets/5E9C2DBF-214B-4370-8295-157C570A8ED5.JPG";
-import img41 from "../../assets/6b7bb27e6ac64164ed48d101a8452a70.JPEG";
-
-const GalleryMarqueeSection = () => {
-  const sectionRef = useRef(null);
-  const marqueeContainerRef = useRef(null);
-
+  /* ------------------------- GSAP Scroll 3D Tilt ------------------------- */
   useLayoutEffect(() => {
-    if (!window.gsap || !window.ScrollTrigger) return;
+    const gsap = (window as any).gsap;
+    const ScrollTrigger = (window as any).ScrollTrigger;
 
-    const gsap = window.gsap;
-    const ScrollTrigger = window.ScrollTrigger;
+    if (!gsap || !ScrollTrigger || !sectionRef.current) return;
+
     gsap.registerPlugin(ScrollTrigger);
 
     const tl = gsap.timeline({
@@ -125,32 +104,75 @@ const GalleryMarqueeSection = () => {
     };
   }, []);
 
-  const allImages = [
-    img1, img2, img3, img4, img5, img6, img7, img8, img9, img10,
-    img11, img12, img13, img14, img15, img16, img17, img18, img19, img20,
-    img21, img22, img23, img24, img25, img26, img27, img28, img29, img30,
-    img31, img32, img33, img34, img35, img36, img37, img38, img39, img40,
-    img41,
+  /* -------------------------- IMAGE ASSETS -------------------------- */
+  const allImages: string[] = [
+    "../../assets/smart bin pic-01_1600x907.jpg",
+    "../../assets/att.jpg",
+    "../../assets/sock.jpg",
+    "../../assets/c1.jpg",
+    "../../assets/ch1.jpg",
+    "../../assets/Connect-ROS.png",
+    "../../assets/Screenshot 2023-05-18 033647.png",
+    "../../assets/Screenshot 2023-05-18 033710.png",
+    "../../assets/Screenshot 2023-05-19 041052.png",
+    "../../assets/IMG_2215.jpg",
+    "../../assets/p1.jpg",
+    "../../assets/meg1.jpg",
+    "../../assets/p2.jpg",
+    "../../assets/p3.jpg",
+    "../../assets/IMG_0670.JPG",
+    "../../assets/IMG_0661.JPG",
+    "../../assets/IMG_0662.JPG",
+    "../../assets/IMG_1101.jpg",
+    "../../assets/con10.JPG",
+    "../../assets/con11.JPG",
+    "../../assets/con12.JPG",
+    "../../assets/con13.JPG",
+    "../../assets/con14.JPG",
+    "../../assets/con2.JPG",
+    "../../assets/con3.JPG",
+    "../../assets/con4.JPG",
+    "../../assets/con5.JPG",
+    "../../assets/con6.JPG",
+    "../../assets/con7.JPG",
+    "../../assets/con8.JPG",
+    "../../assets/con9.JPG",
+    "../../assets/Con1.JPEG",
+    "../../assets/Screenshot 2023-05-19 041117.png",
+    "../../assets/Screenshot 2023-11-05 171409.png",
+    "../../assets/v3.png",
+    "../../assets/v6.png",
+    "../../assets/v7.png",
+    "../../assets/v8.png",
+    "../../assets/w2.png",
+    "../../assets/5E9C2DBF-214B-4370-8295-157C570A8ED5.JPG",
+    "../../assets/6b7bb27e6ac64164ed48d101a8452a70.JPEG",
   ];
 
-  const rows = [
-    allImages.slice(0, Math.ceil(allImages.length / 4)),
-    allImages.slice(Math.ceil(allImages.length / 4), Math.ceil(allImages.length / 2)),
-    allImages.slice(Math.ceil(allImages.length / 2), Math.ceil((3 * allImages.length) / 4)),
-    allImages.slice(Math.ceil((3 * allImages.length) / 4)),
-  ];
+  // Split evenly into 4 marquee rows
+  const rows: string[][] = useMemo(() => {
+    const quarter = Math.ceil(allImages.length / 4);
+    return [
+      allImages.slice(0, quarter),
+      allImages.slice(quarter, 2 * quarter),
+      allImages.slice(2 * quarter, 3 * quarter),
+      allImages.slice(3 * quarter),
+    ];
+  }, [allImages]);
 
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 md:py-36 bg-[#0a0a0a] overflow-hidden"
+      className="relative py-24 md:py-36 bg-background overflow-hidden"
       style={{ perspective: "1500px" }}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/70 to-[#0a0a0a] pointer-events-none" />
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/70 to-background pointer-events-none" />
 
+      {/* Title + Subtitle */}
       <div className="relative z-10 container mx-auto px-6 text-center mb-20">
-        <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-white">
-          Moments{" "}
+        <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
+          <span className="text-white">Moments</span>{" "}
           <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
             in Motion
           </span>
@@ -160,6 +182,7 @@ const GalleryMarqueeSection = () => {
         </p>
       </div>
 
+      {/* Marquee Rows */}
       <div ref={marqueeContainerRef} className="relative z-10 flex flex-col gap-10">
         <Marquee images={rows[0]} direction="left" speed={45} />
         <Marquee images={rows[1]} direction="right" speed={50} />
