@@ -14,7 +14,7 @@ const FeaturedProjects3D: React.FC = () => {
       title: "Smart Waste Bin (IoT)",
       desc: "AI-powered IoT system for automatic waste detection and segregation.",
       tech: ["Arduino", "Python", "OpenCV", "ROS"],
-      img: "/assets/smart bin pic-01_1600x907.jpg",
+      img: "/assets/sm1.jpg",
     },
     {
       title: "AI Assistant (Voice + Vision)",
@@ -26,7 +26,7 @@ const FeaturedProjects3D: React.FC = () => {
       title: "ConnectROS Platform",
       desc: "Web-based hub for managing and visualizing robotics data using ROS nodes.",
       tech: ["Next.js", "ROS", "WebSockets"],
-      img: "/assets/Connect-ROS.png",
+      img: "/assets/connect-ROS.png",
     },
     {
       title: "Creative Portfolio UI",
