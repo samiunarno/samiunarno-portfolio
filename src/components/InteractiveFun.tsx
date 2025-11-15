@@ -11,28 +11,28 @@ const FeaturedProjects3D: React.FC = () => {
 
   const projects = [
     {
-      title: "Smart Waste Bin (IoT)",
-      desc: "AI-powered IoT system for automatic waste detection and segregation.",
-      tech: ["Arduino", "Python", "OpenCV", "ROS"],
-      img: "/assets/sm1.jpg",
+      title: "Humanoid Robot With Gesture Control",
+      desc: "AI-powered humanoid robot capable of gesture recognition, real-time movement response, and intelligent interaction.",
+      tech: ["Raspberry Pi", "OpenCV", "TensorFlow", "Arduino"],
+      img: "/assets/d2.jpg",
     },
     {
-      title: "AI Assistant (Voice + Vision)",
-      desc: "Built an AI assistant capable of speech recognition, response, and image understanding.",
-      tech: ["TensorFlow", "React", "Flask", "NLP"],
-      img: "/assets/att.jpg",
+      title: "Autonomous Robotic Arm Vehicle",
+      desc: "A fully autonomous rover with robotic arm capable of object tracking, navigation, and manipulation using AI vision.",
+      tech: ["Python", "ROS", "OpenCV", "Raspberry Pi"],
+      img: "/assets/con8.jpg",
     },
     {
-      title: "ConnectROS Platform",
-      desc: "Web-based hub for managing and visualizing robotics data using ROS nodes.",
-      tech: ["Next.js", "ROS", "WebSockets"],
-      img: "/assets/connect-ros.png",
+      title: "AI Medical ChatBot (Virtual Doctor)",
+      desc: "AI chatbot for medical diagnostics with symptom analysis, recommendation system, and natural interaction.",
+      tech: ["Python", "TensorFlow", "NLP", "React"],
+      img: "/assets/p7.png",
     },
     {
-      title: "Creative Portfolio UI",
-      desc: "Dynamic 3D-reactive portfolio built with Next.js and Framer Motion animations.",
-      tech: ["Next.js", "Framer Motion", "TailwindCSS"],
-      img: "/assets/v7.png",
+      title: "Full Stack Dropshipping Ecommerce",
+      desc: "Automation-enabled ecommerce platform featuring product management, analytics dashboard, and real-time order system.",
+      tech: ["Next.js", "MongoDB", "Express", "Node.js"],
+      img: "/assets/p4.png",
     },
   ];
 
@@ -88,7 +88,7 @@ const FeaturedProjects3D: React.FC = () => {
           </span>
         </h2>
         <p className="text-gray-400 mt-6 text-lg md:text-xl max-w-2xl mx-auto">
-          A showcase of my most advanced and creative innovations — built to blend art, code, and intelligence.
+          A showcase of my most advanced and creative innovations — built to blend robotics, AI, and full-stack engineering.
         </p>
       </div>
 

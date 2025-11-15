@@ -35,7 +35,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-900 pt-32" // ✅ Increased pt-32
     >
       {/* 3D Background */}
       <div className="absolute inset-0 z-0">
@@ -57,25 +57,25 @@ const Hero = () => {
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 to-gray-900/80 z-10" />
 
-      {/* Centered Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center text-center max-w-5xl mx-auto px-6">
+      {/* Centered Content - Perfectly centered */}
+      <div className="relative z-20 w-full flex flex-col items-center justify-center text-center max-w-5xl mx-auto px-4 sm:px-6 py-20 mt-16"> {/* ✅ Increased mt-16 */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="text-purple-400 text-lg md:text-xl mb-4 font-medium"
+          className="text-purple-400 text-lg md:text-xl mb-6 font-medium" // ✅ Increased mb-6
         >
-           FULL STACK DEVELOPER
+          FULL STACK DEVELOPER
         </motion.p>
 
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-4xl md:text-7xl font-bold mb-6 leading-tight"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight" // ✅ Increased mb-8
         >
           <span className="block text-white">Transforming Concepts into</span>
-          <span className="block bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent">
+          <span className="block bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent mt-4"> {/* ✅ Increased mt-4 */}
             Seamless User Experiences
           </span>
         </motion.h1>
@@ -84,7 +84,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed"
+          className="text-gray-300 text-base md:text-lg lg:text-xl max-w-2xl lg:max-w-3xl mx-auto mb-10 lg:mb-12 leading-relaxed" // ✅ Increased mb-10
         >
           <TypewriterText
             text="Hi! I'm Samiun Mahmud, a Full Stack Developer. I prioritize client collaboration, fostering open communication"
@@ -97,21 +97,21 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.5 }}
-          className="flex flex-col sm:flex-row gap-6 items-center justify-center mb-12"
+          className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-center mb-10 lg:mb-14 w-full px-4" // ✅ Increased mb-10
         >
           <motion.button
             whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(168,85,247,0.4)' }}
             whileTap={{ scale: 0.95 }}
-            className="group px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold text-white hover-target flex items-center gap-3 transition-all duration-300"
+            className="group px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold text-white hover-target flex items-center gap-2 sm:gap-3 transition-all duration-300 w-full sm:w-auto justify-center"
           >
-            <Play size={20} className="group-hover:scale-110 transition-transform duration-300" />
+            <Play size={18} className="group-hover:scale-110 transition-transform duration-300" />
             See My Work
           </motion.button>
 
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 border border-purple-500/50 rounded-full font-semibold text-purple-400 hover:bg-purple-500/10 transition-all duration-300 hover-target"
+            className="px-6 sm:px-8 py-3 sm:py-4 border border-purple-500/50 rounded-full font-semibold text-purple-400 hover:bg-purple-500/10 transition-all duration-300 hover-target w-full sm:w-auto"
           >
             Download Resume
           </motion.button>
@@ -122,7 +122,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.8 }}
-          className="flex items-center justify-center gap-6 mb-8"
+          className="flex items-center justify-center gap-4 sm:gap-6 mb-8 lg:mb-10" // ✅ Increased mb-8
         >
           {[
             { icon: Github, href: '#' },
@@ -133,19 +133,19 @@ const Hero = () => {
               href={href}
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.9 }}
-              className="p-3 rounded-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 text-gray-400 hover:text-purple-400 hover:border-purple-500/50 transition-all duration-300 hover-target"
+              className="p-2 sm:p-3 rounded-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 text-gray-400 hover:text-purple-400 hover:border-purple-500/50 transition-all duration-300 hover-target"
             >
-              <Icon size={24} />
+              <Icon size={20} className="sm:w-6 sm:h-6" />
             </motion.a>
           ))}
         </motion.div>
 
-        {/* Scroll Down Indicator */}
+        {/* Scroll Down Indicator - More space from content */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 2 }}
-          className="flex flex-col items-center"
+          className="flex flex-col items-center mt-12 lg:mt-16" // ✅ Increased mt-12
         >
           <p className="text-gray-500 mb-3 text-sm">Scroll to explore</p>
           <motion.div
