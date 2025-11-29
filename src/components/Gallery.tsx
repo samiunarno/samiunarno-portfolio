@@ -28,7 +28,7 @@ const Marquee: React.FC<MarqueeProps> = ({
   const animationDirection = direction === "left" ? "normal" : "reverse";
 
   return (
-    <div className="relative flex overflow-hidden select-none group">
+    <div className="relative flex overflow-hidden select-none group px-2">
       <div
         className="flex items-center animate-marquee group-hover:[animation-play-state:paused]"
         style={{
@@ -39,12 +39,27 @@ const Marquee: React.FC<MarqueeProps> = ({
         {marqueeImages.map((src, index) => (
           <div
             key={index}
-            className="flex-shrink-0 w-[45vw] sm:w-[35vw] md:w-[28vw] lg:w-[22vw] xl:w-[18vw] mx-4 aspect-[16/9] relative bg-gray-800 rounded-2xl overflow-hidden shadow-lg"
+            className="
+              flex-shrink-0
+              w-[75vw]     /* Mobile */
+              sm:w-[55vw]  /* Small screens */
+              md:w-[38vw]  /* Tablets */
+              lg:w-[26vw]  /* Laptops */
+              xl:w-[20vw]  /* Large screens */
+
+              mx-3 aspect-[16/9]
+              bg-gray-800 rounded-xl overflow-hidden shadow-lg
+              transition-all duration-300
+              hover:scale-[1.03]
+            "
           >
             <img
               src={src}
               alt={`Gallery image ${index + 1}`}
-              className="w-full h-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.65,0.05,0.36,1)]"
+              className="
+                w-full h-full object-cover
+                transition-transform duration-500 ease-[cubic-bezier(0.65,0.05,0.36,1)]
+              "
               loading="lazy"
               onError={(e) => {
                 e.currentTarget.style.display = "none";
@@ -58,7 +73,7 @@ const Marquee: React.FC<MarqueeProps> = ({
 };
 
 /* -------------------------------------------------------------------------- */
-/*                        3D MARQUEE GALLERY SECTION                         */
+/*                        3D MARQUEE GALLERY SECTION                          */
 /* -------------------------------------------------------------------------- */
 const GalleryMarqueeSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -82,10 +97,13 @@ const GalleryMarqueeSection: React.FC = () => {
       },
     });
 
+    /* Responsive 3D transforms */
+    const isMobile = window.innerWidth < 768;
+
     gsap.set(marqueeContainerRef.current, {
-      rotateX: 45,
-      scale: 0.85,
-      y: "-15vh",
+      rotateX: isMobile ? 15 : 45,
+      scale: isMobile ? 0.95 : 0.85,
+      y: isMobile ? "-5vh" : "-15vh",
       autoAlpha: 0.6,
     });
 
@@ -147,7 +165,7 @@ const GalleryMarqueeSection: React.FC = () => {
     "/assets/w2.png",
     "/assets/ph1.jpg",
     "/assets/ph2.jpeg",
-    "./assets/1.JPG",
+    "/assets/1.JPG",
     "/assets/2.JPG",
     "/assets/3.JPG",
     "/assets/conf1.jpg",
@@ -160,7 +178,7 @@ const GalleryMarqueeSection: React.FC = () => {
     "/assets/11.JPG",
   ];
 
-  // Split evenly into 4 marquee rows
+  /* Split evenly into 4 marquee rows */
   const rows: string[][] = useMemo(() => {
     const quarter = Math.ceil(allImages.length / 4);
     return [
@@ -174,27 +192,31 @@ const GalleryMarqueeSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 md:py-36 bg-background overflow-hidden"
+      className="relative py-20 sm:py-24 md:py-32 bg-background overflow-hidden"
       style={{ perspective: "1500px" }}
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/70 to-background pointer-events-none" />
 
       {/* Title + Subtitle */}
-      <div className="relative z-10 container mx-auto px-6 text-center mb-20">
-        <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
+      <div className="relative z-10 container mx-auto px-4 text-center mb-14 sm:mb-16 md:mb-20">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
           <span className="text-white">Moments</span>{" "}
           <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
             in Motion
           </span>
         </h2>
-        <p className="text-gray-400 mt-6 text-lg md:text-xl max-w-2xl mx-auto">
+
+        <p className="text-gray-400 mt-4 sm:mt-6 text-base sm:text-lg md:text-xl max-w-xl sm:max-w-2xl mx-auto px-3">
           A seamless flow of captured memories — authentic, vivid, and full of life.
         </p>
       </div>
 
       {/* Marquee Rows */}
-      <div ref={marqueeContainerRef} className="relative z-10 flex flex-col gap-10">
+      <div
+        ref={marqueeContainerRef}
+        className="relative z-10 flex flex-col gap-8 sm:gap-10"
+      >
         <Marquee images={rows[0]} direction="left" speed={45} />
         <Marquee images={rows[1]} direction="right" speed={50} />
         <Marquee images={rows[2]} direction="left" speed={55} />

@@ -2,17 +2,33 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Trophy, Medal, Award, Star, Zap, Rocket, Target, Users, Cpu, Code2 } from 'lucide-react';
+
+import {
+  Trophy,
+  Medal,
+  Award,
+  Star,
+  Zap,
+  Rocket,
+  Target,
+  Users,
+  Cpu,
+  Code2,
+} from 'lucide-react';
+
 import { useInView } from 'react-intersection-observer';
 
 const Awards = () => {
   const [ref, inView] = useInView({
-    threshold: 0.3,
+    threshold: 0.2,
     triggerOnce: true,
   });
 
+  // =========================================
+  // Awards List
+  // =========================================
   const awards = [
-    // --- International ---
+    // International
     {
       id: 1,
       title: '1st Place in Asia',
@@ -42,14 +58,14 @@ const Awards = () => {
       duration: '6 Months',
     },
 
-    // --- Bangladesh Robotics / Tech Fests ---
+    // Robotics / Tech Fest BD
     {
       id: 3,
       title: 'TRACTION Champion',
       organization: 'National Robotics Competition, Bangladesh',
       year: '2023',
       description:
-        'Won national robotics event with a high-performing autonomous bot focusing on computer vision and path optimization.',
+        'Won national robotics event with a high-performing autonomous bot focusing on computer vision & path optimization.',
       icon: Medal,
       color: 'from-purple-500 to-pink-500',
       category: 'National Robotics',
@@ -63,7 +79,7 @@ const Awards = () => {
       organization: 'Independent University Bangladesh',
       year: '2022',
       description:
-        'Built and programmed a line-following and obstacle-avoidance robot that won top place at IUB TechFest Robotics Challenge.',
+        'Built and programmed a line-following & obstacle-avoidance robot winning top place at IUB TechFest.',
       icon: Cpu,
       color: 'from-green-500 to-emerald-500',
       category: 'University Robotics',
@@ -77,7 +93,7 @@ const Awards = () => {
       organization: 'Military Institute of Science and Technology',
       year: '2021',
       description:
-        'Developed a semi-autonomous rescue robot that secured finalist position among 50+ teams in the Technovation robotics event.',
+        'Developed a semi-autonomous rescue robot that secured finalist position among 50+ teams.',
       icon: Rocket,
       color: 'from-pink-500 to-rose-500',
       category: 'University Robotics',
@@ -86,14 +102,14 @@ const Awards = () => {
       duration: '2 Months',
     },
 
-    // --- Hackathons ---
+    // Hackathons
     {
       id: 6,
       title: 'Bangladesh ICT Division Hackathon',
       organization: 'ICT Division, Bangladesh Government',
       year: '2023',
       description:
-        'Created a machine learning-based flood prediction system, earning recognition in the Smart Bangladesh Hackathon.',
+        'Created a machine-learning flood prediction system — recognized in Smart Bangladesh Hackathon.',
       icon: Star,
       color: 'from-sky-500 to-indigo-500',
       category: 'National Hackathon',
@@ -107,7 +123,7 @@ const Awards = () => {
       organization: 'North South University',
       year: '2024',
       description:
-        'Developed a mental health chatbot using NLP and React Native that reached the final stage of NSU Hackathon 2024.',
+        'Built a mental health chatbot using NLP & React Native — finalist at NSU Hackathon.',
       icon: Target,
       color: 'from-teal-500 to-cyan-500',
       category: 'Hackathon',
@@ -120,8 +136,7 @@ const Awards = () => {
       title: 'AI Innovation Hackathon',
       organization: 'BRAC University & BASIS',
       year: '2022',
-      description:
-        'Built an AI-powered attendance and face recognition system for educational institutes — awarded for innovation.',
+      description: 'AI-powered attendance + face recognition system — won Innovation Award.',
       icon: Zap,
       color: 'from-amber-500 to-yellow-500',
       category: 'AI Hackathon',
@@ -130,14 +145,14 @@ const Awards = () => {
       duration: '1 Week',
     },
 
-    // --- Competitive Programming ---
+    // Programming Competitions
     {
       id: 9,
       title: 'NSU Bit Arena Winner',
       organization: 'North South University',
       year: '2022',
       description:
-        'Secured top position in competitive programming among national universities using C++ and algorithmic problem-solving.',
+        'Champion in competitive programming using C++ & algorithmic problem-solving.',
       icon: Code2,
       color: 'from-red-500 to-pink-500',
       category: 'Competitive Programming',
@@ -148,10 +163,10 @@ const Awards = () => {
     {
       id: 10,
       title: 'Code Samurai Finalist',
-      organization: 'Code Samurai by CSE Fest Bangladesh',
+      organization: 'CSE Fest Bangladesh',
       year: '2019',
       description:
-        'Participated and reached finals in Bangladesh’s biggest university-level coding contest.',
+        'Reached finals in Bangladesh’s biggest university-level coding contest.',
       icon: Award,
       color: 'from-violet-500 to-fuchsia-500',
       category: 'Programming Contest',
@@ -161,24 +176,24 @@ const Awards = () => {
     },
   ];
 
-  // ✅ Always visible Achievement Stats
+  // =========================================
+  // Achievement Stats
+  // =========================================
   const AchievementStats = () => (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 max-w-4xl mx-auto">
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-12 max-w-4xl mx-auto">
       {[
-        { icon: Trophy, label: 'International Wins', value: '2' },
+        { icon: Trophy, label: 'International Wins', value: '02' },
         { icon: Users, label: 'Team Members Led', value: '08+' },
         { icon: Zap, label: 'Competitions', value: '20+' },
         { icon: Rocket, label: 'Years Active', value: '7+' },
       ].map((stat, index) => (
         <div
           key={index}
-          className="text-center p-4 bg-gray-900/30 rounded-2xl border border-gray-700/50 backdrop-blur-sm"
+          className="text-center p-4 bg-gray-900/40 rounded-2xl border border-gray-700/40 backdrop-blur-md"
         >
-          <div className="w-8 h-8 mx-auto mb-2 flex items-center justify-center">
-            <stat.icon className="w-8 h-8 text-purple-400" />
-          </div>
-          <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-          <div className="text-xs text-gray-400">{stat.label}</div>
+          <stat.icon className="w-7 h-7 text-purple-400 mx-auto mb-2" />
+          <p className="text-xl sm:text-2xl font-bold text-white">{stat.value}</p>
+          <p className="text-gray-400 text-xs sm:text-sm">{stat.label}</p>
         </div>
       ))}
     </div>
@@ -187,117 +202,104 @@ const Awards = () => {
   return (
     <section
       id="awards"
-      className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 relative overflow-hidden"
+      className="py-16 sm:py-20 bg-gradient-to-br from-gray-900 to-gray-800 relative overflow-hidden"
       ref={ref}
     >
-      {/* Background Animation */}
-      <div className="absolute top-10 left-10 w-72 h-72 bg-purple-600/5 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-pink-600/5 rounded-full blur-3xl animate-pulse" />
+      {/* Background Glow */}
+      <div className="absolute top-10 left-10 w-48 h-48 sm:w-72 sm:h-72 bg-purple-600/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-10 right-10 w-64 h-64 sm:w-96 sm:h-96 bg-pink-600/10 rounded-full blur-3xl" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Heading */}
-        <div className="text-center mb-12">
-          <p className="text-purple-400 text-lg font-medium mb-4">
+        <div className="text-center mb-10 sm:mb-12">
+          <p className="text-purple-400 text-sm sm:text-lg font-medium mb-2 sm:mb-4">
             COMPETITION EXCELLENCE
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
             Awards &{' '}
             <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
               Achievements
             </span>
           </h2>
 
-          <div className="text-pink-400 text-sm font-semibold animate-pulse">
-            Robotics • Hackathons • Programming • Innovation
-          </div>
-
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto mt-4">
-            Recognizing excellence in Bangladesh’s most competitive robotics,
-            hackathon, and programming events (2019–2025).
+          <p className="text-gray-400 text-sm sm:text-base max-w-xl mx-auto">
+            Recognizing excellence in Bangladesh’s top robotics, hackathon, and programming events.
           </p>
         </div>
 
-        {/* Always Visible Stats */}
+        {/* Stats */}
         <AchievementStats />
 
-        {/* Awards Carousel */}
+        {/* Awards Swiper */}
         <div className="max-w-6xl mx-auto">
           <Swiper
             modules={[Autoplay, Pagination]}
-            spaceBetween={30}
+            spaceBetween={20}
             slidesPerView={1}
-            autoplay={{ delay: 4000, disableOnInteraction: false }}
-            pagination={{
-              clickable: true,
-              bulletClass: 'swiper-pagination-bullet custom-bullet',
-              bulletActiveClass:
-                'swiper-pagination-bullet-active custom-bullet-active',
-            }}
+            autoplay={{ delay: 3500, disableOnInteraction: false }}
+            pagination={{ clickable: true }}
             breakpoints={{
               640: { slidesPerView: 1 },
               768: { slidesPerView: 2 },
-              1024: { slidesPerView: 2 },
-              1280: { slidesPerView: 3 },
+              1024: { slidesPerView: 3 },
             }}
-            className="awards-swiper pb-16"
+            className="pb-12"
           >
             {awards.map((award) => (
               <SwiperSlide key={award.id}>
-                <div className="h-full">
-                  <div className="p-6 bg-gradient-to-br from-gray-800/60 to-gray-900/80 backdrop-blur-sm border border-gray-700/30 rounded-3xl h-full flex flex-col relative overflow-hidden">
+                <div className="p-5 bg-gray-800/40 border border-gray-700/30 rounded-3xl backdrop-blur-md h-full flex flex-col relative">
+                  {/* Icon */}
+                  <div className="relative mb-5">
                     <div
-                      className={`absolute inset-0 bg-gradient-to-br ${award.color} opacity-5 rounded-3xl`}
+                      className={`w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br ${award.color} rounded-2xl flex items-center justify-center shadow-lg`}
+                    >
+                      <award.icon size={26} className="text-white" />
+                    </div>
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${award.color} rounded-2xl blur-lg opacity-30`}
                     />
-                    <div className="relative mb-6">
-                      <div
-                        className={`w-16 h-16 bg-gradient-to-br ${award.color} rounded-2xl flex items-center justify-center shadow-lg`}
-                      >
-                        <award.icon size={28} className="text-white" />
-                      </div>
-                      <div
-                        className={`absolute inset-0 bg-gradient-to-br ${award.color} rounded-2xl blur-md opacity-30`}
-                      />
+                  </div>
+
+                  {/* Category */}
+                  <div className="inline-flex px-3 py-1 rounded-full bg-gray-700/40 border border-gray-600/50 text-xs text-gray-300 mb-3">
+                    {award.category}
+                  </div>
+
+                  {/* Title */}
+                  <h4 className="text-lg sm:text-xl font-bold text-white mb-1">
+                    {award.title}
+                  </h4>
+
+                  <p className="text-purple-400 font-semibold text-sm sm:text-base mb-3">
+                    {award.organization}
+                  </p>
+
+                  <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4 flex-grow">
+                    {award.description}
+                  </p>
+
+                  <div className="space-y-2 text-xs sm:text-sm mt-auto">
+                    <div className="flex justify-between text-gray-300">
+                      <span>Achievement:</span>
+                      <span className="text-white font-semibold">
+                        {award.achievement}
+                      </span>
                     </div>
-
-                    <div className="inline-flex items-center px-3 py-1 rounded-full bg-gray-700/50 border border-gray-600/50 text-xs text-gray-300 mb-4 self-start">
-                      {award.category}
+                    <div className="flex justify-between text-gray-300">
+                      <span>Team:</span>
+                      <span className="text-white">{award.teamSize}</span>
                     </div>
-
-                    <h4 className="text-white text-xl font-bold mb-3">
-                      {award.title}
-                    </h4>
-                    <p className="text-purple-400 font-semibold text-lg mb-4">
-                      {award.organization}
-                    </p>
-
-                    <p className="text-gray-300 mb-6 leading-relaxed flex-grow">
-                      {award.description}
-                    </p>
-
-                    <div className="space-y-3 mt-auto">
-                      <div className="flex justify-between items-center text-sm">
-                        <span className="text-gray-400">Achievement:</span>
-                        <span className="text-white font-semibold">
-                          {award.achievement}
-                        </span>
-                      </div>
-                      <div className="flex justify-between items-center text-sm">
-                        <span className="text-gray-400">Team:</span>
-                        <span className="text-white">{award.teamSize}</span>
-                      </div>
-                      <div className="flex justify-between items-center text-sm">
-                        <span className="text-gray-400">Duration:</span>
-                        <span className="text-white">{award.duration}</span>
-                      </div>
+                    <div className="flex justify-between text-gray-300">
+                      <span>Duration:</span>
+                      <span className="text-white">{award.duration}</span>
                     </div>
+                  </div>
 
-                    <div className="absolute top-6 right-6">
-                      <div className="px-3 py-1 bg-gray-700/80 rounded-full border border-gray-600/50">
-                        <span className="text-white text-sm font-semibold">
-                          {award.year}
-                        </span>
-                      </div>
-                    </div>
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-gray-700/70 rounded-full border border-gray-600/40">
+                    <span className="text-white text-xs sm:text-sm font-semibold">
+                      {award.year}
+                    </span>
                   </div>
                 </div>
               </SwiperSlide>
@@ -305,36 +307,23 @@ const Awards = () => {
           </Swiper>
         </div>
 
-        {/* Footer */}
-        <div className="text-center mt-12">
-          <p className="text-gray-500 text-sm">
-            Representing Bangladesh in Robotics, AI, and Programming excellence since 2017
-          </p>
-        </div>
+        <p className="text-gray-500 text-xs sm:text-sm text-center mt-10">
+          Representing Bangladesh in Robotics, AI & Programming since 2017
+        </p>
       </div>
 
-      {/* Custom Swiper Styles */}
+      {/* Swiper Custom Styling */}
       <style jsx global>{`
-        .awards-swiper {
-          padding-bottom: 60px;
+        .swiper-pagination-bullet {
+          width: 10px;
+          height: 10px;
+          background: rgba(168, 85, 247, 0.3);
+          opacity: 1;
         }
-        .custom-bullet {
-          width: 14px !important;
-          height: 14px !important;
-          background: rgba(168, 85, 247, 0.3) !important;
-          border-radius: 50% !important;
-          transition: all 0.3s ease !important;
-          margin: 0 6px !important;
-          border: 2px solid transparent !important;
-        }
-        .custom-bullet-active {
-          background: linear-gradient(135deg, #a855f7, #ec4899) !important;
-          transform: scale(1.3) !important;
-          border-color: rgba(255, 255, 255, 0.2) !important;
-          box-shadow: 0 0 15px rgba(168, 85, 247, 0.5) !important;
-        }
-        .awards-swiper .swiper-pagination {
-          bottom: 0 !important;
+        .swiper-pagination-bullet-active {
+          background: linear-gradient(135deg, #a855f7, #ec4899);
+          transform: scale(1.3);
+          box-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
         }
       `}</style>
     </section>

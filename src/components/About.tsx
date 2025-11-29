@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Code, Cpu, Bot, Sparkles } from 'lucide-react';
-import profileImg from '/assets/pro.jpeg'; // ✅ Ensure path is correct
+import profileImg from '/assets/pro.jpeg';
 
 const About = () => {
   const [ref, inView] = useInView({
-    threshold: 0.3,
+    threshold: 0.1,
     triggerOnce: true,
   });
 
@@ -37,61 +37,52 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-gray-900 relative overflow-hidden">
+    <section id="about" className="py-16 bg-gray-900 relative overflow-hidden">
       {/* Background Effects */}
-      <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-600/20 rounded-full blur-3xl" />
+      <div className="absolute top-1/3 left-1/4 w-60 h-60 bg-purple-600/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-1/4 w-60 h-60 bg-pink-600/20 rounded-full blur-3xl" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10" ref={ref}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10" ref={ref}>
         {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.7 }}
+          className="text-center mb-12"
         >
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-purple-400 text-lg font-medium mb-4"
-          >
+          <p className="text-purple-400 text-sm sm:text-base font-medium mb-2">
             WHO I AM
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-4xl md:text-5xl font-bold text-white mb-8"
-          >
+          </p>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
             About{" "}
             <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
               Me
             </span>
-          </motion.h2>
+          </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Left Side */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
           >
             {/* Profile Image */}
-            <div className="flex justify-center mb-10">
+            <div className="flex justify-center mb-8">
               <motion.img
                 src={profileImg}
                 alt="Profile"
-                className="w-48 h-48 md:w-56 md:h-56 object-cover rounded-full border-4 border-purple-500/30 shadow-lg shadow-purple-600/30 hover:scale-105 transition-transform duration-500"
+                className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 object-cover rounded-full border-4 border-purple-500/30 shadow-lg shadow-purple-600/30 hover:scale-105 transition-transform duration-500"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.8, delay: 0.5 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
               />
             </div>
 
-            {/* Bio Text */}
-            <div className="space-y-6 text-white text-lg leading-relaxed">
+            {/* Bio */}
+            <div className="space-y-4 text-white text-base sm:text-lg leading-relaxed px-2 sm:px-0">
               <p>
                 I'm{" "}
                 <span className="text-purple-400 font-semibold">
@@ -99,66 +90,67 @@ const About = () => {
                 </span>
                 , a Computer Science & Technology student and passionate Full
                 Stack Developer dedicated to solving real-world problems through
-                creativity and technology. My journey combines a solid
-                foundation in programming with hands-on experience across both
-                frontend and backend development.
+                creativity and technology.
               </p>
+
               <p>
-                Beyond software, I’m deeply involved in Robotics and Artificial
-                Intelligence, focusing on deep learning, computer vision, and
-                intelligent system design. From developing autonomous rovers to
-                AI-powered image processing and security tools, I aim to build
-                technology that learns, adapts, and creates real impact.
+                I’m deeply involved in Robotics and Artificial Intelligence,
+                focusing on deep learning, computer vision, and intelligent
+                system design.
               </p>
             </div>
 
             {/* Stats */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="grid grid-cols-3 gap-8 mt-12"
+              transition={{ duration: 0.7, delay: 0.5 }}
+              className="grid grid-cols-3 gap-4 sm:gap-8 mt-10"
             >
               {[
-                { number: "30+", label: "Projects Completed" },
-                { number: "20+", label: "Hackathons & Competitions" },
-                { number: "3+ Years", label: "Experience in Development" },
-              ].map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+                { number: "30+", label: "Projects" },
+                { number: "20+", label: "Hackathons" },
+                { number: "3+ Years", label: "Experience" },
+              ].map((stat, i) => (
+                <div key={i} className="text-center">
+                  <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
                     {stat.number}
                   </div>
-                  <div className="text-gray-400 text-sm mt-2">{stat.label}</div>
+                  <div className="text-gray-400 text-xs sm:text-sm mt-1">
+                    {stat.label}
+                  </div>
                 </div>
               ))}
             </motion.div>
           </motion.div>
 
-          {/* Right Content - Features */}
+          {/* Right Side - Features */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="space-y-6"
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="space-y-4 sm:space-y-6"
           >
-            {features.map((feature, index) => (
+            {features.map((feature, i) => (
               <motion.div
-                key={index}
+                key={i}
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
-                whileHover={{ scale: 1.02, x: 10 }}
-                className="group p-6 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300"
+                transition={{ duration: 0.6, delay: 0.5 + i * 0.1 }}
+                whileHover={{ scale: 1.02, x: 8 }}
+                className="group p-4 sm:p-6 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300"
               >
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-xl bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 group-hover:border-purple-400/50 transition-colors duration-300">
-                    <feature.icon size={24} className="text-purple-400" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="p-2 sm:p-3 rounded-xl bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 group-hover:border-purple-400/50 transition-colors duration-300">
+                    <feature.icon size={22} className="text-purple-400" />
                   </div>
+
                   <div>
-                    <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-purple-400 transition-colors duration-300">
+                    <h3 className="text-lg sm:text-xl font-semibold text-white mb-1 group-hover:text-purple-400 transition-colors duration-300">
                       {feature.title}
                     </h3>
-                    <p className="text-white group-hover:text-gray-200 transition-colors duration-300">
+
+                    <p className="text-gray-300 text-sm sm:text-base group-hover:text-gray-200 transition-colors duration-300">
                       {feature.description}
                     </p>
                   </div>

@@ -2,11 +2,11 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Github, Linkedin, Twitter, Mail, ArrowUp, Heart } from 'lucide-react';
-import Logo from '/assets/logo.png';  // Import your logo
+import Logo from '/assets/logo.png';
 
 const Footer = () => {
   const [ref, inView] = useInView({
-    threshold: 0.3,
+    threshold: 0.2,
     triggerOnce: true,
   });
 
@@ -21,139 +21,75 @@ const Footer = () => {
     { icon: Mail, href: 'mailto:samiunarnouk@gmail.com', label: 'Email' },
   ];
 
-  const quickLinks = [
-    { name: 'Home', href: '#hero' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
-  ];
-
-  const services = [
-    { name: 'Web Development', href: '#services' },
-    { name: '3D Experiences', href: '#services' },
-    { name: 'UI/UX Design', href: '#services' },
-    { name: 'Mobile Apps', href: '#services' },
-  ];
-
   return (
     <footer className="bg-gray-900 border-t border-gray-800 relative overflow-hidden">
       {/* Background Effects */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-600/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-1/4 w-56 h-56 sm:w-96 sm:h-96 bg-purple-600/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-56 h-56 sm:w-96 sm:h-96 bg-pink-600/10 rounded-full blur-3xl" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10" ref={ref}>
-        {/* Main Footer Content */}
-        <div className="py-16">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Brand Section */}
+      <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        {/* Main Content */}
+        <div className="py-12 sm:py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 text-center md:text-left">
+
+            {/* Brand + About */}
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-2"
+              transition={{ duration: 0.7 }}
+              className="lg:col-span-2 flex flex-col items-center md:items-start"
             >
-              {/* Replace the text with the logo image */}
               <motion.img
-                src={Logo}  // Logo source
+                src={Logo}
                 alt="Logo"
-                className="w-32 md:w-48 mb-4 cursor-pointer"  // Adjust size as needed
-                whileHover={{ scale: 1.05 }}  // Add hover effect
-                onClick={scrollToTop}  // Scroll to top when clicked
+                className="w-28 sm:w-36 md:w-44 mb-4 cursor-pointer"
+                whileHover={{ scale: 1.05 }}
+                onClick={scrollToTop}
               />
-              <p className="text-gray-400 mb-6 max-w-md leading-relaxed">
-                Creating exceptional digital experiences through innovative web development, 
+
+              <p className="text-gray-400 max-w-md leading-relaxed text-sm sm:text-base text-center md:text-left">
+                Creating exceptional digital experiences through innovative web development,
                 3D graphics, and thoughtful design. Let's build something amazing together.
               </p>
-              
-              {/* Social Links */}
-              <div className="flex gap-4">
-                {socialLinks.map((social, index) => (
+
+              {/* Social Icons */}
+              <div className="flex justify-center md:justify-start gap-4 mt-5">
+                {socialLinks.map((item, index) => (
                   <motion.a
                     key={index}
-                    href={social.href}
+                    href={item.href}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={inView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     whileHover={{ scale: 1.2, y: -2 }}
                     whileTap={{ scale: 0.9 }}
-                    className="p-3 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl text-gray-400 hover:text-purple-400 hover:border-purple-500/50 transition-all duration-300 hover-target"
-                    aria-label={social.label}
+                    className="p-3 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl text-gray-400 hover:text-purple-400 hover:border-purple-500/50 transition-all duration-300"
+                    aria-label={item.label}
                   >
-                    <social.icon size={20} />
+                    <item.icon size={18} />
                   </motion.a>
                 ))}
               </div>
             </motion.div>
-
-            {/* Quick Links */}
-            {/* <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
-              <ul className="space-y-2">
-                {quickLinks.map((link, index) => (
-                  <li key={index}>
-                    <motion.button
-                      whileHover={{ x: 5 }}
-                      onClick={() => {
-                        const element = document.querySelector(link.href);
-                        element?.scrollIntoView({ behavior: 'smooth' });
-                      }}
-                      className="text-gray-400 hover:text-purple-400 transition-colors duration-300 hover-target"
-                    >
-                      {link.name}
-                    </motion.button>
-                  </li>
-                ))}
-              </ul>
-            </motion.div> */}
-
-            {/* Services */}
-            {/* <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <h4 className="text-lg font-semibold text-white mb-4">Services</h4>
-              <ul className="space-y-2">
-                {services.map((service, index) => (
-                  <li key={index}>
-                    <motion.button
-                      whileHover={{ x: 5 }}
-                      onClick={() => {
-                        const element = document.querySelector(service.href);
-                        element?.scrollIntoView({ behavior: 'smooth' });
-                      }}
-                      className="text-gray-400 hover:text-purple-400 transition-colors duration-300 hover-target"
-                    >
-                      {service.name}
-                    </motion.button>
-                  </li>
-                ))}
-              </ul>
-            </motion.div> */}
           </div>
         </div>
 
         {/* Bottom Bar */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="py-6 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4"
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="border-t border-gray-800 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left"
         >
-          <p className="text-gray-400 text-center md:text-left flex items-center gap-2">
-            © 2025 Samiun Mahmud . Made with 
-            <Heart size={16} className="text-red-500 fill-current" />
-            and lots of coffee.
+          <p className="text-gray-400 text-sm flex items-center gap-2">
+            © 2025 Samiun Mahmud • Made with
+            <Heart size={14} className="text-red-500 fill-current" /> and lots of coffee.
           </p>
-          
-          <div className="flex items-center gap-6 text-sm text-gray-400">
-            <span>Privacy Policy</span>
-            <span>Terms of Service</span>
-            <span>Cookies</span>
+
+          <div className="flex gap-4 text-gray-400 text-xs sm:text-sm">
+            <span className="hover:text-white transition cursor-pointer">Privacy Policy</span>
+            <span className="hover:text-white transition cursor-pointer">Terms</span>
+            <span className="hover:text-white transition cursor-pointer">Cookies</span>
           </div>
         </motion.div>
       </div>
@@ -162,14 +98,15 @@ const Footer = () => {
       <motion.button
         initial={{ opacity: 0, scale: 0.8 }}
         animate={inView ? { opacity: 1, scale: 1 } : {}}
-        transition={{ duration: 0.5, delay: 0.5 }}
-        whileHover={{ scale: 1.1, y: -2 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        whileHover={{ scale: 1.12, y: -3 }}
         whileTap={{ scale: 0.9 }}
         onClick={scrollToTop}
-        className="fixed bottom-8 right-8 p-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white shadow-lg hover:shadow-purple-500/25 transition-all duration-300 hover-target z-40"
+        className="fixed bottom-6 right-6 p-4 sm:p-5 bg-gradient-to-r from-purple-600 to-pink-600 
+                   rounded-full text-white shadow-lg hover:shadow-purple-500/40 transition-all duration-300 z-40"
         aria-label="Scroll to top"
       >
-        <ArrowUp size={24} />
+        <ArrowUp size={22} className="sm:size-24" />
       </motion.button>
     </footer>
   );
